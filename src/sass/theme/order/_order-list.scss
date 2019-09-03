@@ -1,0 +1,196 @@
+@import "../../common";
+
+.order-list {
+  color: $default-text;
+  &.container {
+    padding-top: $header-height;
+    @media (max-width: $resM) {
+      padding-top: $header-height-sm;
+    }
+  }
+  .order-content {
+    background: #ffffff;
+    margin: 20px 0;
+    @media (max-width: $resM) {
+      margin: 15px 0;
+    }
+    line-height: 100%;
+    .table-content {
+      color: $default-text;
+      &.border-top {
+        border-top: 4px solid $primary;
+      }
+      > table {
+        width: 100%;
+        th {
+          font-size: 14px;
+          padding: 18px 0;
+          text-align: center;
+        }
+        tr {
+          &.order-list-tr-separator {
+            td {
+              height: 10px;
+              background: $body-bg;
+            }
+          }
+          &.order-list-item-title {
+            td {
+              padding: 18px 30px;
+              background: #fbfbfb;
+              span {
+                color: $profile-menu-text;
+                &.highlight {
+                  color: $primary;
+                }
+                margin-right: 60px;
+              }
+            }
+          }
+          &.order-list-item {
+            td {
+              padding: 30px 0;
+              > div {
+                min-height: 66px;
+                border-right: 1px solid #ececec;
+                display: flex;
+                justify-content: center; /* align horizontal */
+                align-items: center; /* align vertical */
+              }
+              button, a, span {
+                display: block;
+                margin: auto auto;
+              }
+              a, span {
+                height: 30px;
+                line-height: 30px;
+              }
+              a {
+                color: $primary;
+              }
+              span {
+                color: $sub-title;
+              }
+            }
+          }
+          &.border-top {
+            td {
+              border-top: 1px solid #ececec;
+            }
+          }
+          &.border-bottom {
+            td {
+              border-bottom: 1px solid #ececec;
+            }
+          }
+          &.no-padding {
+            td {
+              padding: 0;
+            }
+          }
+          &.padding-sm {
+            td {
+              padding: 30px;
+            }
+          }
+        }
+        td {
+          //padding: 30px 30px 0 30px;
+          font-size: 14px;
+          line-height: 100%;
+          text-align: center;
+          //span {
+          //  vertical-align: top;
+          //  padding: 0 8px;
+          //  line-height: 30px;
+          //  &.currency {
+          //    color: $activity;
+          //    font-size: 16px;
+          //  }
+          //}
+          input {
+            box-sizing: border-box;
+            display: inline-block;
+            width: 46px;
+            text-align: center;
+            height: 32px;
+            padding: 0;
+          }
+          button {
+            vertical-align: top;
+          }
+        }
+      }
+    }
+    .order-status {
+      padding: 30px;
+      margin-bottom: 40px;
+      background: #fafbfb;
+      span {
+        font-size: 24px;
+        line-height: 100%;
+      }
+    }
+    .order-detail-info {
+      padding-bottom: 20px;
+      span {
+        font-size: 14px;
+        color: $profile-menu-text;
+        margin-right: 60px;
+      }
+    }
+  }
+  .pay-info {
+    padding: 13px;
+    span {
+      line-height: 100%;
+      &.currency-number {
+        font-size: 34px;
+        margin-left: 5px;
+        color: $activity;
+      }
+      &.currency-unit {
+        padding-top: 10px;
+        font-size: 24px;
+        margin-left: 14px;
+        color: $activity;
+      }
+      &.currency-title {
+        padding-top: 20px;
+        font-size: 14px;
+        margin-left: 17px;
+      }
+    }
+  }
+  .pay-channel {
+    position: relative;
+    width: 100%;
+    height: 58px;
+    font-size: 116px;
+    text-align: center;
+    border: 2px solid $border;
+    cursor: pointer;
+    .icon {
+      margin-top: -30px;
+    }
+    .pay-channel-checked {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 20px;
+      .icon {
+        color: $primary;
+      }
+    }
+    &.active {
+      border: 2px solid $primary;
+      .pay-channel-checked {
+        display: block;
+      }
+    }
+  }
+  .pay-submit-wrapper {
+    padding-bottom: 20px;
+  }
+}

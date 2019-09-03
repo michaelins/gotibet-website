@@ -1,0 +1,310 @@
+<div class="travelogue">
+    <div class="travelogue-banner">
+        <div class="travelogue-banner-content">
+            <div class="travelogue-banner-img">
+                <img ng-src="{{travelogue.coverImg}}?imageView2/1{{isMobile?'/w/600/h/300/':'/w/1920/h/480'}}" ng-if="travelogue.coverImg"/>
+            </div>
+            <div class="travelogue-banner-title">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                            <div class="title-content">
+                                {{travelogue.title}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="travelogue-author-info">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                    <div class="author-content">
+                        <div class="avatar">
+                            <img ng-src="{{travelogue.author.avatarUrl}}"/>
+                        </div>
+                        <div class="author">{{travelogue.author.nickName}}</div>
+                        <div class="date">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_sj"></use>
+                            </svg>
+                            &nbsp;{{travelogue.createDate | date: 'yyyy.MM.dd'}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_ydl"></use>
+                            </svg>
+                            &nbsp;{{travelogue.pageviews}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{travelogue.days}}天
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12 visible-lg-block visible-md-block visible-sm-block">
+                    <div class="tools-content">
+                        <div class="thumb-up" ng-click="disabledThumbsUp()?'':thumbsUp()">
+                            <svg class="icon" aria-hidden="true" ng-if="!disabledThumbsUp()">
+                                <use xlink:href="#icon-icon_dz_n"></use>
+                            </svg>
+                            <svg class="icon" aria-hidden="true" ng-if="disabledThumbsUp()">
+                                <use xlink:href="#icon-icon_dz_s"></use>
+                            </svg>
+                            <span>{{disabledThumbsUp()?travelogue.thumbs:'点赞'}}</span>
+                        </div>
+                        <div class="share" uib-popover-template="dynamicPopover.templateUrl" popover-append-to-body="true" popover-placement="bottom">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_fx"></use>
+                            </svg>
+                            <span>分享</span>
+                        </div>
+                        <div class="fav">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_sc_n"></use>
+                            </svg>
+                            <span>收藏</span>
+                        </div>
+                    </div>
+                    <script type="text/ng-template" id="myPopoverTemplate.html">
+                        <div class="tools-content">
+                            <div class="wechat" ng-click="dataService.shareWechat()">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_wx"></use>
+                                </svg>
+                            </div>
+                            <div class="weibo" ng-click="dataService.shareWeibo(travelogue.title, travelogue.coverImg)">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_wb"></use>
+                                </svg>
+                            </div>
+                            <div class="qzone" ng-click="dataService.shareQzone(travelogue.title, travelogue.coverImg, travelogue.texts&&travelogue.texts.length>0?travelogue.texts[0].text:travelogue.title)">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_kj"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="travelogue-content">
+                    <button class="btn btn-primary-sm" ng-if="hasUserOwnTravelogue()" ui-sref="travelogue.compose({id: travelogue.id})">编辑游记</button>
+                    <button class="btn btn-danger-sm" ng-if="hasUserOwnTravelogue()" ng-click="deleteTravelogue()">删除游记</button>
+                    <div class="keyword">
+                        <span class="label label-primary" style="display: inline-block" ng-repeat="keyword in travelogue.keyWords" ui-sref="home({tab:'travelogues', tKeyword:keyword.id})">
+                        {{keyword.content}}
+                    </span>
+                    </div>
+                    <div class="node-wrapper" ng-repeat="section in travelogue.sections" id="section{{section.id}}">
+                        <div class="node-content" ng-if="section.content">
+                            <h2 ng-bind-html="section.content.section"></h2>
+                        </div>
+                        <div class="node-content" ng-repeat="node in section.nodes">
+                            <p ng-if="node.image !== undefined">
+                                <!--<img ng-if="node.image !== undefined" ng-src="{{node.image}}" class="img-responsive"/>-->
+
+                                <figure ng-if="node.image !== undefined && node.w !== undefined && node.h !== undefined">
+                                    <!--<a href="{{node.image}}{{isMobile?'?imageView2/1/w/600/h/300/':''}}">-->
+                                    <a ng-click="openPhotoSwipe(node, $event)">
+                                        <div afkl-lazy-image="{{node.image}}{{isMobile?'?imageView2/0/w/400':''}}" ></div>
+                                    </a>
+                                    <figcaption ng-if="node.caption && (node.caption | plainText) !== '点击编辑图片标题'" ng-bind-html="node.caption"></figcaption>
+                                </figure>
+
+                                <!--<span class="image-caption" ng-if="node.caption && (node.caption | plainText) !== '点击编辑图片标题'" ng-bind-html="node.caption"></span>-->
+                            </p>
+                            <div class="node-text" ng-if="node.text !== undefined" ng-bind-html="node.text"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="travelogue-interaction">
+                    <div class="thumbs-up">
+                        <button class="btn center-block" ng-class="{'btn-thumbs-up':!disabledThumbsUp(), 'btn-thumbs-up-done':disabledThumbsUp()}"
+                                ng-click="disabledThumbsUp()?'':thumbsUp()">
+                            <svg class="icon" aria-hidden="true" ng-if="!disabledThumbsUp()">
+                                <use xlink:href="#icon-icon_dz_n"></use>
+                            </svg>
+                            <svg class="icon" aria-hidden="true" ng-if="disabledThumbsUp()">
+                                <use xlink:href="#icon-icon_dz_s"></use>
+                            </svg>
+                            &nbsp;{{disabledThumbsUp()?'已赞':'点赞'}}&nbsp;{{travelogue.thumbs === 0?'':'&nbsp;|&nbsp;&nbsp;'+travelogue.thumbs}}
+                        </button>
+                    </div>
+                    <div class="tools clearfix">
+                        <button class="btn btn-wechat" ng-click="dataService.shareWechat()">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_wx"></use>
+                            </svg>
+                        </button>
+                        <button class="btn btn-weibo" ng-click="dataService.shareWeibo(travelogue.title, travelogue.coverImg)">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_wb"></use>
+                            </svg>
+                        </button>
+                        <button class="btn btn-qzone" ng-click="dataService.shareQzone(travelogue.title, travelogue.coverImg, travelogue.texts&&travelogue.texts.length>0?travelogue.texts[0].text:travelogue.title)">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_kj"></use>
+                            </svg>
+                        </button>
+                        <button class="btn btn-fav pull-right">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_sc_s"></use>
+                            </svg>&nbsp;收藏
+                        </button>
+                    </div>
+
+                    <div class="comment-block clearfix">
+                        <form name="form" novalidate>
+                            <div class="caption">评论（{{travelogueComments.totalElements}}）</div>
+                            <div class="comment-input">
+                                <textarea ui-tinymce="tinymceOptionsNoFocus" name="mainCommentEditor" ng-model="comment.content" required></textarea>
+                            </div>
+                            <button class="btn btn-primary-md pull-right" ng-click="submitComment(form, false)">评论</button>
+                            <span class="error-block pull-right" ng-show="form.mainCommentEditor.$dirty && form.mainCommentEditor.$error.required">请输入评论内容</span>
+                        </form>
+                    </div>
+                    <div class="comments">
+                        <div class="comment-content" ng-repeat="item in travelogueComments.content">
+                            <div class="avatar">
+                                <img ng-src="{{item.author.avatarUrl+'?imageView2/1/w/60/h/60'}}"/>
+                            </div>
+                            <div class="reply-btn" ng-click="openCommentBlock(item)">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_hf"></use>
+                                </svg>&nbsp;回复
+                            </div>
+                            <div class="author">{{item.author.nickName}}<span ng-if="item.repliedUser && item.author.id !== item.repliedUserId"> 回复 </span>{{item.repliedUser && item.author.id !==
+                                item.repliedUserId?item.repliedUser.nickName:''}}
+                            </div>
+                            <div class="date">
+                                <span uib-tooltip="{{item.createDate | date: 'yyyy年M月dd日 HH:mm:ss'}}" tooltip-placement="bottom-left">{{item.createDate | timeAgo}}</span>
+                            </div>
+                            <div class="content">{{item.content | plainText}}</div>
+                            <div class="comment-block clearfix" ng-if="item.showCommentBlock">
+                                <form name="form" novalidate>
+                                    <div class="comment-input">
+                                        <div ui-tinymce="tinymceOptionsAutoFocus" name="{{item.id}}" ng-model="replyComment.content"></div>
+                                    </div>
+                                    <button class="btn btn-primary-md pull-right" ng-click="submitComment(form, true, item.ownerId, item.ownerType)">评论</button>
+                                    <button class="btn btn-transparent-md pull-right">取消</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <ul uib-pagination ng-if="travelogueComments.totalPages > 1" total-items="travelogueComments.totalElements" ng-model="pagination.currentPage"
+                                items-per-page="pagination.commentsPerPage" max-size="maxSize" ng-class="{'pagination':!isMobile, 'pagination-sm':isMobile}" boundary-links="true"
+                                force-ellipses="true"
+                                first-text="{{isMobile?'&laquo;':'首页'}}" previous-text="{{isMobile?'&lsaquo;':'上一页'}}" next-text="{{isMobile?'&rsaquo;':'下一页'}}"
+                                last-text="{{isMobile?'&raquo;':'尾页'}}"
+                                ng-change="loadComments(pagination.currentPage)"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 visible-lg-block visible-md-block visible-sm-block">
+                <div class="travelogue-sidebar">
+                    <div class="travelogue-activity">
+                        <span>热门活动</span>
+                        <div class="image-body" ui-sref="activity.view({id:activity.id})">
+                            <div class="image-content">
+                                <div class="img">
+                                    <img src="{{activity.coverImg}}?imageView2/1/w/320/h/230" class="img-responsive"/>
+                                </div>
+                                <div class="caption">
+                                    {{activity.title}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="travelogue-menu" data-offset-top="-88" data-offset-bottom="-1000000" bs-affix>
+                        <div class="menu-title">游记目录</div>
+                        <div class="menu-body">
+                            <div class="nav menu-item" ng-repeat="section in travelogue.sections" ng-if="section.content !== undefined || section.nodes.length > 0">
+                                <a du-smooth-scroll="section{{section.id}}" du-scrollspy="section{{section.id}}" offset="88">
+                                    <svg class="icon icon-negative" aria-hidden="true">
+                                        <use xlink:href="#icon-icon_ml_n"></use>
+                                    </svg>
+                                    <svg class="icon icon-positive" aria-hidden="true">
+                                        <use xlink:href="#icon-icon_ml_s"></use>
+                                    </svg>
+                                    <span ng-if="section.content !== undefined" ng-bind-html="section.content.section"></span>
+                                    <span ng-if="section.content === undefined">默认段落</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe.
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides.
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

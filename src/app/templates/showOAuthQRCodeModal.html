@@ -1,0 +1,25 @@
+<div class="modal-content">
+    <div class="close-wrapper">
+        <svg class="icon" aria-hidden="true" ng-click="$dismiss()">
+            <use xlink:href="#icon-guanbi"></use>
+        </svg>
+    </div>
+    <div class="modal-body text-center">
+        <div id="wxlogin" style="margin:0 auto;height: 405px; width: 300px"></div>
+    </div>
+</div>
+
+<script>
+    var url = location.href;
+    url = url.substr(url.indexOf('#/') + 1);
+    var obj = new WxLogin({
+        id: "wxlogin",
+        appid: "wx9aa66990258fbb8e",
+        scope: "snsapi_login",
+        redirect_uri: "https://www.qzang.cc/wechat_oauth.html",
+//        ,
+//        state: url,
+        style: "black"
+//        href: ""
+    });
+</script>

@@ -1,0 +1,161 @@
+@import "../../common";
+
+.enroll {
+  &.container {
+    padding-top: $header-height;
+    @media (max-width: $resM) {
+      padding-top: $header-height-sm;
+    }
+  }
+  .enroll-content {
+    @media (min-width: $resM) {
+      background: #ffffff;
+
+    }
+    margin: 40px 0;
+    padding-bottom: 60px;
+    @media (max-width: $resM) {
+      margin: 15px 0;
+      padding-bottom: 0;
+    }
+    .article-block {
+      @media (min-width: $resM) {
+        padding: 60px 110px 0 110px;
+      }
+      @media (max-width: $resM) {
+        margin-bottom: 15px;
+      }
+      .panel {
+        box-shadow: none;
+        margin-bottom: 0;
+      }
+      .panel-body {
+        height: 0;
+        padding-bottom: 40%;
+        @media (max-width: $resM) {
+          //padding-bottom: 38.333333333333333333333333333333%;
+        }
+        &:hover,
+        &:focus {
+          cursor: pointer;
+        }
+        .panel-content {
+          color: $default-text;
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          .article-banner {
+            position: absolute;
+            left: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            @media (max-width: $resM) {
+              //bottom: 10%;
+            }
+            //background: url('https://temporary-1253467197.picgz.myqcloud.com/6d8f5052cf98445b90c2bec26e1bef0cpng?imageView2/1/w/1020/h/408');
+            //background-size: cover;
+            > img {
+              width: 100%;
+              height: 100%;
+            }
+            .article-countdown {
+              position: absolute;
+              top: 0;
+              right: 0;
+              width: 110px;
+              height: 110px;
+              padding-top: 1.2745098039215686274509803921569%;
+              @media (max-width: $resM) {
+                width: 10.78431372549019607843137254902%*2;
+                height: 27.450980392156862745098039215686%*2;
+                padding-top: 1.2745098039215686274509803921569%*2;
+              }
+              background: rgba(0, 0, 0, 0.7);
+              font-size: 16px;
+              line-height: 24px;
+              @media (max-width: $resM) {
+                font-size: 3.1372549019607843137254901960784vw;
+                line-height: 4.7058823529411764705882352941176vw;
+              }
+              color: #ffffff;
+              .line-1, .line-2, .count {
+                display: block;
+                text-align: center;
+              }
+              .count {
+                padding-top: 10.909090909090909090909090909091%;
+                font-size: 32px;
+                @media (max-width: $resM) {
+                  padding-top: 5.4545454545454545454545454545455%;
+                  font-size: 3.1372549019607843137254901960784vw*2;
+                }
+                color: #fb605b;
+                .days {
+                  font-size: 16px;
+                  @media (max-width: $resM) {
+                    font-size: 3.1372549019607843137254901960784vw;
+                  }
+                  color: #ffffff;
+                }
+              }
+            }
+          }
+        }
+      }
+      .title {
+        font-size: 24px;
+        line-height: 36px;
+        padding: 38px 0 25px;
+        @media (max-width: $resM) {
+          padding: 4vw 0;
+          font-size: 4vw;
+          line-height: 6vw;
+        }
+        color: $default-text;
+        > span {
+          color: $primary;
+          &.ended {
+            color: $danger;
+          }
+        }
+      }
+      .summary {
+        padding-bottom: 30px;
+        border-bottom: 1px solid $border;
+        @media (max-width: $resM) {
+          padding-bottom: 15px;
+        }
+        .date {
+          color: $sub-title;
+          font-size: 18px;
+          line-height: 18px;
+          @media (max-width: $resM) {
+            left: 3.1372549019607843137254901960784vw;
+            font-size: 3.1372549019607843137254901960784vw;
+            line-height: 3.1372549019607843137254901960784vw;
+          }
+          > span {
+            color: $primary;
+          }
+        }
+        .enroll-count {
+          color: $sub-title;
+          font-size: 18px;
+          line-height: 18px;
+          @media (max-width: $resM) {
+            right: 3.1372549019607843137254901960784vw;
+            font-size: 3.1372549019607843137254901960784vw;
+            line-height: 3.1372549019607843137254901960784vw;
+          }
+          > span {
+            color: $primary;
+          }
+        }
+      }
+
+    }
+  }
+}

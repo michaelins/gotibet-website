@@ -1,0 +1,29 @@
+@import "../../common";
+
+.article {
+  &.container {
+    padding-top: $header-height;
+    @media (max-width: $resM) {
+      padding-top: $header-height-sm;
+    }
+    .row .col-lg-8 {
+      @media (min-width: $resL) {
+        width: 70.967741935483870967741935483871%;
+      }
+    }
+  }
+  .article-content {
+    background: #ffffff;
+    margin: 40px 0;
+    padding: 50px 90px;
+    @media (max-width: $resM) {
+      margin: 15px 0;
+      padding: 15px;
+    }
+    > h1 {
+      font-size: 34px;
+      line-height: 48px;
+      margin-bottom: 38px;
+    }
+  }
+}

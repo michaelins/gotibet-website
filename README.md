@@ -1,1 +1,1 @@
-# gotibet-website
+# qzang.cc official website.

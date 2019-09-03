@@ -1,0 +1,85 @@
+<div class="profile">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 visible-lg-block visible-md-block visible-sm-block">
+                <div class="profile-sidebar">
+                    <profile-menu></profile-menu>
+                </div>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="profile-content">
+                    <div class="title">
+                        <span>基本资料</span>
+                    </div>
+                    <form class="form-horizontal" name="form" novalidate>
+
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">
+                                <img ng-src="{{authenticationService.getClaims().avatarUrl}}" class="img-responsive img-circle" style="width: 90px; height: 90px; display: inline"/>
+                            </label>
+                            <div class="col-sm-6">
+                                <div class="input-group" style="margin-bottom: 0;width: 108px;">
+                                    <label class="input-group-btn">
+                                    <span class="btn btn-primary-sm" style="border-radius: 2px">
+                                        修改头像<input type="file" name="file" style="display: none;" nv-file-select uploader="uploader">
+                                    </span>
+                                    </label>
+                                </div>
+                                <div class="cropArea" ng-show="uploader.queue.length > 0">
+                                    <img-crop image="image" area-type="square" result-image-quality="0.5" result-image="cropped.image"></img-crop>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group" ng-if="cropped.image">
+                            <label class="col-sm-2 control-label">预览</label>
+                            <div class="col-sm-6">
+                                <div style="margin-bottom: 15px">
+                                    <img class="img-rounded" ng-src="{{cropped.image}}" style="width: 45px" />
+                                    <img class="img-circle" ng-src="{{cropped.image}}" style="width: 45px; margin-left: 10px" />
+                                </div>
+                                <button class="btn btn-primary" ng-click="saveAvatar()" ng-disabled="avatarSaving">上传头像</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback" ng-class="{'has-error': form.nickName.$dirty && form.nickName.$invalid}">
+                            <label class="col-sm-2 control-label">昵称</label>
+                            <div class="col-sm-4">
+                                <input type="text" class="form-control" id="nickName" name="nickName"
+                                       ng-disabled="saving" ng-model="user.nickName" placeholder="昵称" ng-maxlength="16" ng-minlength="4" maxlength="16" required />
+                                <form-error message-text="请输入昵称" ng-show="form.nickName.$error.required"></form-error>
+                                <form-error message-text="昵称最大长度为16" ng-show="form.nickName.$error.maxlength"></form-error>
+                                <form-error message-text="昵称最小长度为4" ng-show="form.nickName.$error.minlength"></form-error>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback" ng-class="{'has-error': form.gender.$dirty && form.gender.$invalid}">
+                            <label class="col-sm-2 control-label">性别</label>
+                            <div class="col-sm-4">
+                                <label class="radio-inline custom-radio nowrap"><input type="radio" name="gender" ng-model="user.gender" id="male" value="Male" required> <span>男</span></label>
+                                <label class="radio-inline custom-radio nowrap"><input type="radio" name="gender" ng-model="user.gender" id="female" value="Female" required> <span>女</span></label>
+                                <form-error message-text="请选择性别" ng-show="form.gender.$error.required"></form-error>
+                            </div>
+                        </div>
+
+                        <div class="form-group has-feedback" ng-class="{'has-error': form.birthday.$dirty && form.birthday.$invalid}">
+                            <label class="col-sm-2 control-label">生日</label>
+                            <div class="col-sm-4">
+                                <input date-range-picker class="form-control date-picker" type="text" id="birthday" name="birthday" ng-disabled="saving" required onkeydown="return false"
+                                       ng-model="user.birthday" placeholder="生日" options="datepickerOptions"/>
+                                <form-error message-text="请选择生日" ng-show="form.birthday.$error.required"></form-error>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button ng-disabled="saving" ng-click="updateInfo(form)" class="btn btn-primary-sm">保存</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

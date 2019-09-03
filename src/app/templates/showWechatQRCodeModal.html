@@ -1,0 +1,15 @@
+<div class="modal-content">
+    <div class="close-wrapper">
+        <svg class="icon" aria-hidden="true" ng-click="$dismiss()">
+            <use xlink:href="#icon-guanbi"></use>
+        </svg>
+    </div>
+    <div class="modal-body text-center">
+        <span class="wechat-qr-code-title">{{data.title}}</span>
+        <span class="wechat-qr-code-currency">{{data.amount / 100 | currency : '￥'}}</span>
+        <div class="wechat-qr-code-image">
+            <qrcode data="{{data.data.code_url}}" size="200"></qrcode>
+        </div>
+        <span class="wechat-qr-code-description" ng-repeat="desc in data.desc">{{desc}}</span>
+    </div>
+</div>

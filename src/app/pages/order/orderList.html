@@ -1,0 +1,65 @@
+<div class="order-list container">
+
+    <div class="order-content">
+        <div class="table-content">
+            <table>
+                <tr>
+                    <th>名称</th>
+                    <th>数量</th>
+                    <th>单价</th>
+                    <th>总价</th>
+                    <th>操作</th>
+                </tr>
+                <tbody ng-repeat="order in orders.content">
+                <tr class="order-list-tr-separator">
+                    <td colspan="5"></td>
+                </tr>
+                <tr class="order-list-item-title border-bottom">
+                    <td colspan="5" style="text-align: left">
+                        <span class="highlight">订单号：{{order.id}}</span>
+                        <span>订单提交时间：{{order.createDate | date : 'yyyy-MM-dd HH:mm:ss'}}</span>
+                    </td>
+                </tr>
+
+                <tr class="order-list-item">
+                    <td>
+                        <div>{{order.activity.title}}</div>
+                    </td>
+                    <td>
+                        <div>{{order.pits}}</div>
+                    </td>
+                    <td>
+                        <div>{{order.activity.applicationCost / 100 | currency : '￥'}}</div>
+                    </td>
+                    <td>
+                        <div>{{order.actuallyCost / 100 | currency : '￥'}}</div>
+                    </td>
+                    <td>
+                        <button ng-if="order.status == 'Created'" ng-disabled="saving" ui-sref="order.pay({id:order.id})" class="btn btn-activity-xs">立即支付</button>
+                        <span ng-if="order.status != 'Created' && order.status != 'Paid'">
+                            {{order.status == 'Paid'?'已付款':''}}
+                            {{order.status == 'Refunding'?'申请退款中':''}}
+                            {{order.status == 'Refunded'?'已退款':''}}
+                            {{order.status == 'Expired'?'订单已失效':''}}
+                            {{order.status == 'Exception'?'异常':''}}
+                        </span>
+                        <a ng-if="order.status == 'Paid'" ng-click="applyRefund(order)">申请退款</a>
+                        <a ui-sref="order.detail({id:order.id})">查看订单</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+
+    </div>
+    <div class="text-center">
+        <ul uib-pagination ng-if="orders.totalPages > 1" total-items="orders.totalElements" ng-model="pagination.currentPage"
+            items-per-page="pagination.itemsPerPage" max-size="10" ng-class="{'pagination':!isMobile, 'pagination-sm':isMobile}" boundary-links="true"
+            force-ellipses="true"
+            first-text="{{isMobile?'&laquo;':'首页'}}" previous-text="{{isMobile?'&lsaquo;':'上一页'}}" next-text="{{isMobile?'&rsaquo;':'下一页'}}"
+            last-text="{{isMobile?'&raquo;':'尾页'}}"
+            ng-change="loadOrders(pagination.currentPage)"></ul>
+    </div>
+
+</div>

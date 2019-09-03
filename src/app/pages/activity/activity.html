@@ -1,0 +1,93 @@
+<div class="activity">
+    <div class="travelogue-banner">
+        <div class="travelogue-banner-content">
+            <div class="travelogue-banner-img">
+                <img ng-src="{{activity.coverImg}}?imageView2/1{{isMobile?'/w/600/h/300/':'/w/1920/h/480'}}" ng-if="activity.coverImg"/>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                <div class="travelogue-sidebar visible-sm-block visible-xs-block">
+                    <div class="enroll-info">
+                        <span>已报名：<span>{{applicationAmount}}</span></span>
+                        <span>报名截止时间：<span>{{activity.deadline | date : 'yyyy.MM.dd'}}</span></span>
+                        <span>报名费：<span>{{activity.applicationCost / 100 | currency : '￥'}}</span></span>
+                        <button class="btn btn-activity-lg btn-block" ng-click="applyActivity()">立即报名</button>
+                    </div>
+                </div>
+                <div class="travelogue-content">
+
+                    <div class="tools visible-lg-block visible-md-block">
+                        <button class="btn btn-primary-sm" ng-if="authenticationService.isAdmin()" ui-sref="activity.compose({id: activity.id})">编辑活动</button>
+                        <button class="btn btn-danger-sm" ng-if="authenticationService.isAdmin()" ng-click="deleteActivity()">删除活动</button>
+                    </div>
+
+                    {{currentTime | date : 'yyyy-MM-dd HH:mm:ss'}}
+
+                    <h1>{{activity.title}}<span class="ongoing" ng-if="activity.isOngoing">（进行中）</span><span class="ended" ng-if="!activity.isOngoing">（已结束）</span></h1>
+
+                    <div class="node-wrapper" ng-repeat="section in activity.sections" id="section{{section.id}}">
+                        <div class="node-content" ng-if="section.content">
+                            <h2 ng-bind-html="section.content.section"></h2>
+                        </div>
+                        <div class="node-content" ng-repeat="node in section.nodes">
+                            <p ng-if="node.image !== undefined">
+                                <img ng-if="node.image !== undefined" ng-src="{{node.image}}" class="img-responsive"/>
+                                <span class="image-caption" ng-if="node.caption && (node.caption | plainText) !== '点击编辑图片标题'" ng-bind-html="node.caption"></span>
+                            </p>
+                            <div class="node-text" ng-if="node.text !== undefined" ng-bind-html="node.text"></div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="travelogue-sidebar visible-sm-block visible-xs-block">
+                    <!--<div class="tools-content">-->
+                        <!--<div class="fav"><i class="iconfont icon-icon_sc_n"></i><span>收藏</span></div>-->
+                        <!--<div class="share"><i class="iconfont icon-icon_fx"></i><span>分享</span></div>-->
+                    <!--</div>-->
+                    <div class="enroll-info">
+                        <span>已报名：<span>{{applicationAmount}}</span></span>
+                        <span>报名截止时间：<span>{{activity.deadline | date : 'yyyy.MM.dd'}}</span></span>
+                        <span>报名费：<span>{{activity.applicationCost / 100 | currency : '￥'}}</span></span>
+                        <button class="btn btn-activity-lg btn-block" ng-click="applyActivity()">立即报名</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 visible-lg-block visible-md-block">
+                <div class="travelogue-sidebar" data-offset-top="-88" data-offset-bottom="-1000000" bs-affix>
+                    <div class="tools-content">
+                        <div class="fav"><i class="iconfont icon-icon_sc_n"></i><span>收藏</span></div>
+                        <div class="share" uib-popover-template="dynamicPopover.templateUrl" popover-append-to-body="true" popover-placement="bottom"><i class="iconfont icon-icon_fx"></i><span>分享</span></div>
+                    </div>
+                    <script type="text/ng-template" id="myPopoverTemplate.html">
+                        <div class="tools-content">
+                            <div class="wechat" ng-click="dataService.shareWechat()">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_wx"></use>
+                                </svg>
+                            </div>
+                            <div class="weibo" ng-click="dataService.shareWeibo(activity.title, activity.coverImg)">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_wb"></use>
+                                </svg>
+                            </div>
+                            <div class="qzone" ng-click="dataService.shareQzone(activity.title, activity.coverImg, activity.texts&&activity.texts.length>0?activity.texts[0].text:activity.title)">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_kj"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </script>
+                    <div class="enroll-info">
+                        <span>已报名：<span>{{applicationAmount}}</span></span>
+                        <span>报名截止时间：<span>{{activity.deadline | date : 'yyyy.MM.dd'}}</span></span>
+                        <span>报名费：<span>{{activity.applicationCost / 100 | currency : '￥'}}</span></span>
+                        <button class="btn btn-activity-lg btn-block" ng-click="applyActivity()">立即报名</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

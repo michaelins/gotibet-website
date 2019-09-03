@@ -1,0 +1,27 @@
+<div class="auth">
+    <div class="login-block clearfix">
+        <div class="login-form">
+            <span class="title">管理员登录</span>
+            <form role="form" name="form" novalidate>
+                <div class="form-group has-feedback" ng-class="{'has-error': form.username.$dirty && form.username.$invalid}">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="管理员账号" ng-disabled="saving" ng-model="user.username" required>
+                    <form-error message-text="请输入管理员账号" ng-show="form.username.$error.required"></form-error>
+                </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': form.password.$dirty && form.password.$invalid}">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="密码" ng-disabled="saving" ng-model="user.password" maxlength="16"
+                           required>
+                    <form-error message-text="请输入密码" ng-show="form.password.$error.required"></form-error>
+                </div>
+                <button  type="button" class="btn btn-primary-lg btn-block" ng-disabled="saving" ng-click="adminLogin(form)">登录</button>
+                <form-error ng-class="{'has-error': loginError}" message="loginErrorMessage"></form-error>
+                <div class="remember">
+                    <label class="checkbox-inline custom-checkbox nowrap">
+                        <input type="checkbox" id="rememberMe" value="true" ng-model="authenticationService.rememberMe"> <span>记住我</span>
+                    </label>
+                    <!--<a class="pull-right" ui-sref="auth.forget"><span>忘记密码？</span></a>-->
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>

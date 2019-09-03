@@ -1,0 +1,209 @@
+@import "../../common";
+
+.activity {
+  background: #ffffff;
+  padding-top: $header-height;
+  padding-bottom: 80px;
+  @media (max-width: $resM) {
+    padding-top: $header-height-sm;
+  }
+
+  .container .row {
+    @media (min-width: $resL) {
+      .col-lg-8 {
+
+        width: 70.967741935483870967741935483871%;
+      }
+      .col-lg-4 {
+        width: 29.032258064516129032258064516129%;
+      }
+    }
+  }
+
+  .travelogue-banner {
+    position: relative;
+    height: 0;
+    padding-bottom: 25%;
+    @media (max-width: $resM) {
+      padding-bottom: 50%;
+    }
+    .travelogue-banner-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      .travelogue-banner-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        > img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .travelogue-content {
+    background: #ffffff;
+    padding: 50px 0 0;
+    @media (max-width: $resM) {
+      margin: 15px 0 0 0;
+      padding: 15px;
+    }
+    .tools {
+      margin-bottom: 30px;
+    }
+    .subtitle {
+      margin: 24px 0 50px 0;
+      > span {
+        color: $sub-title;
+        &:first-child {
+          color: $primary;
+          margin-right: 30px;
+        }
+        &:nth-child(2) {
+          margin-right: 20px;
+        }
+      }
+    }
+    h1 {
+      margin-bottom: 57px;
+      font-size: 28px;
+      line-height: 48px;
+      color: $default-text;
+      font-weight: bold;
+      @media (max-width: $resM) {
+        font-size: 6vw;
+        line-height: 10vw;
+        margin-bottom: 10vw;
+      }
+      > span {
+        &.ongoing {
+          color: $primary;
+        }
+        &.ended {
+          color: $danger;
+        }
+      }
+    }
+    h2 {
+      margin-bottom: 14px;
+      margin-top: 37px;
+      font-size: 24px;
+      line-height: 48px;
+      color: $activity;
+      font-weight: bold;
+      @media (max-width: $resM) {
+        font-size: 6vw;
+        line-height: 8vw;
+      }
+    }
+    p {
+      font-size: 16px;
+      line-height: 30px;
+      color: $p-text;
+      @media (max-width: $resM) {
+        font-size: 5vw;
+        line-height: 8vw;
+      }
+      > span {
+        &.image-caption {
+          color: $sub-title;
+          font-size: 14px;
+        }
+      }
+    }
+  }
+
+  .travelogue-sidebar {
+    margin-top: 40px;
+    padding: 0 20px 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+    @media (max-width: $resM) {
+      box-shadow: none;
+      padding: 0;
+    }
+    .tools-content {
+      height: 100px;
+      padding: 20px 0;
+      background: #ffffff;
+      > div {
+        height: 100%;
+        width: 50%;
+        float: left;
+        text-align: center;
+        cursor: pointer;
+        &:last-child {
+          border-left: 1px solid $body-bg;
+        }
+        > i {
+          display: block;
+          line-height: 20px;
+          font-size: 20px;
+          padding-top: 7px;
+        }
+        > span {
+          display: block;
+          font-size: 16px;
+          line-height: 100%;
+          padding-top: 10px;
+          color: $default-text;
+        }
+        &.thumb-up > i {
+          color: $primary;
+        }
+        &.fav > i {
+          color: $fav;
+        }
+        &.share > i {
+          color: $share;
+        }
+      }
+      border-bottom: 1px solid $body-bg;
+    }
+    .enroll-info {
+      @media (min-width: $resM) {
+        > span {
+          display: block;
+          font-size: 18px;
+          line-height: 100%;
+          color: $sub-title;
+          margin-top:20px;
+          //&:first-child {
+          //  margin-top: 30px;
+          //  margin-bottom: 17px;
+          //}
+          //&:last-child{
+          //  margin: 30px;
+          //}
+          > span {
+            color: $primary;
+          }
+        }
+        > button {
+          margin-top: 30px;
+        }
+      }
+      @media (max-width: $resM) {
+        > span {
+          display: block;
+          font-size: 18px;
+          line-height: 100%;
+          color: $sub-title;
+          margin-top: 18px;
+          > span {
+            color: $primary;
+          }
+        }
+        > button {
+          margin-top: 30px;
+        }
+      }
+    }
+  }
+}
+

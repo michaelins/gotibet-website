@@ -1,0 +1,622 @@
+@import "../../common";
+
+@mixin tools-content {
+  height: 100px;
+  padding: 20px 0;
+  background: #ffffff;
+  font-size: 20px;
+  line-height: 100%;
+  > div {
+    padding-top: 7px;
+    height: 100%;
+    width: 33.333333333333333333333333333%;
+    float: left;
+    text-align: center;
+    cursor: pointer;
+    border-right: 1px solid $body-bg;
+    &:last-child {
+      border-right: none;
+    }
+    > span {
+      display: block;
+      font-size: 16px;
+      line-height: 100%;
+      padding-top: 10px;
+      color: $default-text;
+    }
+    &.thumb-up {
+      color: $primary;
+    }
+    &.fav {
+      color: $fav;
+    }
+    &.share {
+      color: $share;
+    }
+  }
+}
+
+@mixin content-typography-p {
+  font-size: 16px;
+  line-height: 30px;
+  color: $p-text;
+  //&.pristine {
+  //  color: $sub-title;
+  //}
+  @media (max-width: $resM) {
+    font-size: 5vw;
+    line-height: 8vw;
+  }
+}
+
+@mixin content-typography {
+  h1 {
+    margin-bottom: 5px;
+    font-size: 34px;
+    line-height: 48px;
+    color: $default-text;
+    font-weight: bold;
+    @media (max-width: $resM) {
+      font-size: 7vw;
+      line-height: 10vw;
+    }
+  }
+  h2 {
+    margin-bottom: 5px;
+    font-size: 24px;
+    line-height: 48px;
+    min-height: 48px;
+    color: $default-text;
+    font-weight: bold;
+    &:before {
+      color: $sub-title;
+    }
+    @media (max-width: $resM) {
+      font-size: 6vw;
+      line-height: 10vw;
+    }
+  }
+  > div {
+    &:before {
+      //@include content-typography-p();
+      color: $sub-title;
+    }
+    //> p {
+    //  @include content-typography-p();
+    //}
+    //>
+  }
+  p {
+    @include content-typography-p();
+  }
+  span {
+    &.image-caption {
+      min-height: 20px;
+      font-size: 14px;
+      display: block;
+      &:before {
+        color: $sub-title;
+      }
+    }
+  }
+}
+
+.travelogue {
+
+  padding-top: $header-height;
+  @media (max-width: $resM) {
+    padding-top: $header-height-sm;
+  }
+
+  .container .row {
+    @media (min-width: $resL) {
+      .col-lg-8 {
+
+        width: 70.967741935483870967741935483871%;
+      }
+      .col-lg-4 {
+        width: 29.032258064516129032258064516129%;
+      }
+    }
+    @media (max-width: $resM) {
+      > div {
+        padding: 0;
+      }
+    }
+  }
+
+  .travelogue-banner {
+    position: relative;
+    height: 0;
+    padding-bottom: 25%;
+    @media (max-width: $resM) {
+      padding-bottom: 50%;
+    }
+    .travelogue-banner-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      .travelogue-banner-img {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        > img {
+          width: 100%;
+          height: 100%;
+        }
+        &:after {
+          content: "";
+          display: block;
+          position: absolute;
+          width: 100%;
+          height: 55%;
+          bottom: 0;
+          background: -webkit-linear-gradient(transparent, #FFF) left repeat;
+          background: linear-gradient(transparent, rgba(0,0,0,0.8)) left repeat;
+        }
+        .cover-img-placeholder {
+          width: 100%;
+          height: 100%;
+          background: url('../../../assets/pictures/gray.jpg');
+          background-size: contain;
+        }
+      }
+      .travelogue-banner-title {
+        padding-top: 19.0625%;
+        font-size: 1.7708333333333333333333333333333vw;
+        line-height: 2.5vw;
+        color: #ffffff;
+        @media (max-width: $resM) {
+          padding-top: 35.125%;
+          font-size: 5vw;
+          line-height: 6vw;
+        }
+        .title-content {
+          span {
+            line-height: 100%;
+          }
+          height: 5vw;
+          @media (max-width: $resM) {
+            height: 10vw;
+            padding: 0 5vw;
+          }
+          display: flex;
+          align-items: flex-end;
+        }
+      }
+    }
+  }
+
+  .travelogue-author-info {
+    background: $default;
+    .author-content {
+      height: 100px;
+      @media (max-width: $resM) {
+        height: 20vw;
+      }
+      .avatar {
+        position: absolute;
+        top: 20px;
+        bottom: 20px;
+        width: 60px;
+        @media (max-width: $resM) {
+          top: 4vw;
+          bottom: 4vw;
+          left: 4vw;
+          width: 12vw;
+        }
+        > img {
+          width: 100%;
+          height: 100%;
+          border-radius: 50%;
+        }
+      }
+      .author {
+        padding-top: 30px;
+        padding-left: 80px;
+        font-size: 20px;
+        line-height: 100%;
+        color: $primary;
+        @media (max-width: $resM) {
+          padding: 6vw 0 0 20vw;
+          font-size: 4vw;
+        }
+      }
+      .date {
+        padding-top: 16px;
+        padding-left: 80px;
+        font-size: 14px;
+        line-height: 100%;
+        color: $sub-title;
+        @media (max-width: $resM) {
+          padding-top: 3.2vw;
+          padding-left: 20vw;
+          font-size: 2.8vw;
+        }
+        > i {
+          font-size: 14px;
+          @media (max-width: $resM) {
+            font-size: 2.8vw;
+          }
+        }
+        .icon {
+          vertical-align: -0.15em;
+        }
+      }
+    }
+    .tools-content {
+      @include tools-content();
+    }
+  }
+
+  .travelogue-content {
+    background: #ffffff;
+    margin-top: 40px;
+    padding: 60px 90px 80px;
+    min-height: 300px;
+    @media (max-width: $resM) {
+      margin: 0;
+      padding: 15px;
+    }
+    .subtitle {
+      margin: 24px 0 50px 0;
+      > span {
+        color: $sub-title;
+        &:first-child {
+          color: $primary;
+          margin-right: 30px;
+        }
+        &:nth-child(2) {
+          margin-right: 20px;
+        }
+      }
+      @media (max-width: $resM) {
+        margin: 4vw 0;
+      }
+    }
+
+    .keyword {
+      word-break: break-all;
+      margin: 20px 0;
+      @media (max-width: $resM) {
+        margin: 4vw 0;
+      }
+      > span {
+        margin-right: .4em;
+        cursor: pointer;
+      }
+    }
+
+    .node-content {
+      &:hover {
+        //border: 1px solid $primary;
+      }
+      @include content-typography();
+      .node-text {
+        &.pristine {
+          > p, > div > p {
+            color: $sub-title;
+          }
+        }
+      }
+      .afkl-lazy-wrapper {
+        img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+      }
+    }
+
+    &.editor {
+      padding: 40px 70px 60px;
+      .first-add-tool {
+        padding: 20px 20px 0 20px;
+      }
+      .node-content {
+        position: relative;
+        margin: 10px;
+        padding: 10px;
+        &:hover {
+          padding: 7px;
+          border: 3px dashed $sub-title;
+          .dragTips {
+            display: block;
+          }
+        }
+        .dragTips {
+          cursor: move;
+          display: none;
+          position: absolute;
+          right: 13px;
+          bottom: 10px;
+          color: $sub-title;
+        }
+      }
+    }
+  }
+
+  .travelogue-interaction {
+    background: #ffffff;
+    padding: 0 90px 0;
+    margin-bottom: 40px;
+    @media (max-width: $resM) {
+      padding: 0 15px 0;
+      margin-bottom: 15px;
+    }
+    .thumbs-up {
+      padding-bottom: 32px;
+      border-bottom: 1px solid $body-bg;
+      @media (max-width: $resM) {
+
+      }
+    }
+    .tools {
+      padding-top: 32px;
+      @media (max-width: $resM) {
+        text-align: center;
+      }
+      .btn-wechat, .btn-weibo, .btn-qzone {
+        margin-right: 25px;
+        @media (max-width: $resM) {
+          margin: 0 10px;
+          display: inline;
+        }
+      }
+      .btn-fav {
+        @media (max-width: $resM) {
+          float: none !important;
+          margin-top: 32px;
+        }
+      }
+
+    }
+    .comment-block {
+      padding-top: 60px;
+      padding-bottom: 18px;
+      .caption {
+        font-size: 20px;
+        line-height: 100%;
+        margin-bottom: 17px;
+        @media (max-width: $resM) {
+          font-size: 4vw;
+        }
+      }
+      .comment-input {
+        margin-bottom: 10px;
+      }
+      .error-block {
+        font-size: 16px;
+        line-height: 40px;
+        margin-right: 15px;
+      }
+    }
+    .comments {
+      .comment-content {
+        padding-bottom: 30px;
+        border-bottom: 1px solid $body-bg;
+        position: relative;
+        color: $default-text;
+        @media (max-width: $resM) {
+          padding-bottom: 6vw;
+        }
+        .avatar {
+          position: absolute;
+          top: 20px;
+          left: 0;
+          height: 60px;
+          width: 60px;
+          > img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+          }
+          @media (max-width: $resM) {
+            top: 4vw;
+            left: 0;
+            height: 12vw;
+            width: 12vw;
+          }
+        }
+        .reply-btn {
+          position: absolute;
+          right: 0;
+          top: 30px;
+          font-size: 14px;
+          line-height: 100%;
+          cursor: pointer;
+          @media (max-width: $resM) {
+            top: 6vw;
+            font-size: 2.8vw;
+          }
+        }
+        .author {
+          padding-top: 30px;
+          padding-left: 80px;
+          font-size: 14px;
+          line-height: 100%;
+          color: $primary;
+          > span {
+            color: $default-text;
+          }
+          @media (max-width: $resM) {
+            padding: 6vw 0 0 16vw;
+            font-size: 2.8vw;
+          }
+        }
+        .date {
+          padding-top: 6px;
+          padding-left: 80px;
+          font-size: 12px;
+          line-height: 100%;
+          color: $sub-title;
+          @media (max-width: $resM) {
+            padding: 1.2vw 0 0 16vw;
+            font-size: 2.4vw;
+          }
+        }
+        .content {
+          padding-top: 4px;
+          padding-left: 80px;
+          font-size: 16px;
+          line-height: 28px;
+          @media (max-width: $resM) {
+            padding: 0.8vw 0 0 16vw;
+            font-size: 4vw;
+            line-height: 6vw;
+          }
+        }
+        .comment-block {
+          padding: 24px 0 0 80px;
+          @media (max-width: $resM) {
+            padding: 24px 0 0 0;
+          }
+          .comment-input {
+            //height: 140px;
+            margin-bottom: 10px;
+            //border: 1px solid $body-bg;
+          }
+          > button {
+            margin-left: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .travelogue-sidebar {
+    .tools-content {
+      @include tools-content();
+      border: 1px solid #e3e3e3;
+      margin-top: 40px;
+    }
+    .travelogue-activity {
+      padding-top: 40px;
+      > span {
+        font-size: 21px;
+        line-height: 100%;
+        display: block;
+        margin-bottom: 20px;
+      }
+      .image-body {
+        height: 0;
+        padding-bottom: 71.875%;
+        position: relative;
+        cursor: pointer;
+        .image-content {
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          .img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            > img {
+              width: 100%;
+              height: 100%;
+              border-radius: 4px;
+
+            }
+            &:after {
+              content: "";
+              display: block;
+              position: absolute;
+              width: 100%;
+              height: 55%;
+              bottom: 0;
+              background: -webkit-linear-gradient(transparent, #FFF) left repeat;
+              background: linear-gradient(transparent, rgba(0,0,0,0.8)) left repeat;
+              border-radius: 4px;
+            }
+          }
+          .caption {
+            position: absolute;
+            bottom: 14px;
+            left: 14px;
+            right: 14px;
+            font-size: 20px;
+            line-height: 28px;
+            color: #ffffff;
+          }
+        }
+      }
+    }
+    .travelogue-menu {
+      padding-top: 40px;
+      background: $body-bg;
+      z-index: 0;
+      &.affix {
+        max-height: calc(100% - #{$header-height} - 40px);
+        margin-bottom: 40px;
+        overflow-y: auto;
+      }
+      .menu-title {
+        font-size: 20px;
+        line-height: 100%;
+        color: $default-text;
+        margin-bottom: 25px;
+      }
+      .menu-body {
+        position: relative;
+        &:after {
+          content: '';
+          position: absolute;
+          top: 0;
+          bottom: 0;
+          left: 5px;
+          border-left: 1px solid $sub-title;
+          z-index: -1;
+        }
+        .menu-content {
+          position: absolute;
+          left: 0;
+          top: 0;
+          bottom: 0;
+          right: 0;
+          background: transparent;
+        }
+        .menu-item {
+          margin-bottom: 30px;
+          background: $body-bg;
+          > a {
+            font-size: 16px;
+            line-height: 22px;
+            height: 22px;
+            color: $default-text;
+            .icon {
+              margin-right: 12px;
+              vertical-align: 0;
+              &.icon-negative {
+                font-size: 10px;
+                display: inline;
+              }
+              &.icon-positive {
+                font-size: 12px;
+                display: none;
+              }
+            }
+            &.active {
+              color: $primary;
+              .icon {
+                &.icon-negative {
+                  display: none;
+                }
+                &.icon-positive {
+                  display: inline;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

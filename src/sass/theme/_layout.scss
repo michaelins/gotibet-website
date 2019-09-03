@@ -1,0 +1,66 @@
+@import "../common";
+
+/* Sticky footer styles
+-------------------------------------------------- */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: $footer-height;
+  @media only screen and (max-width: $resM) {
+    margin-bottom: $footer-height-sm;
+  }
+  font-family: $font-family;
+  background: $body-bg;
+}
+
+body a {
+  cursor: pointer;
+  color: currentColor;
+  text-decoration: none !important;
+  //transition: color 0.2s ease;
+  &:hover {
+    color: currentColor;
+  }
+}
+
+.container {
+  @media (min-width: $resXXL) {
+    //width: 1230px;
+    padding-left: 20px;
+    padding-right: 20px;
+    width: 1240px;
+    .row {
+      margin-right: -20px;
+      margin-left: -20px;
+      > div {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+    }
+  }
+}
+
+.anchor {
+  display: block;
+  position: relative;
+  top: -$header-height;
+  visibility: hidden;
+}
+
+.anchor-home {
+  display: block;
+  position: relative;
+  top: calc(-#{$header-height} - #{$header-height});
+  visibility: hidden;
+}
+
+.afkl-lazy-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}

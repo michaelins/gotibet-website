@@ -1,0 +1,137 @@
+@import "../../common";
+
+.auth {
+  padding-top: $header-height;
+  @media (max-width: $resM) {
+    padding-top: $header-height-sm;
+  }
+  background: url('../../../assets/pictures/dl.jpg') no-repeat;
+  background-size: cover;
+  min-height: 668px;
+  height: calc(100vh - #{$footer-height});
+  @media (max-width: $resM) {
+    height:auto;
+  }
+  .login-block{
+    position: relative;
+    width: 720px;
+    height: 424px;
+    &.forget{
+      width: 420px;
+      height: 444px;
+    }
+    background: #ffffff;
+    border-radius: 2px;
+    margin: 126px auto 0;
+    @media (max-width: $resM) {
+      width:100%;
+      height: auto;
+      margin: 0;
+      background: transparent;
+      &.forget{
+        width:100%;
+        height: auto;
+      }
+    }
+    .login-form{
+      position: absolute;
+      top:0;
+      left: 0;
+      bottom: 0;
+      width: 420px;
+      border-right: 1px solid $border;
+      margin: 40px 0;
+      padding: 0 40px;
+      @media (max-width: $resM) {
+        position: relative;
+        background: transparent;
+        width: 100%;
+        border: none;
+        padding: 0 4vw;
+        margin: 4vw 0;
+        color: #ffffff;
+      }
+      &.forget{
+        border: none;
+      }
+      .title{
+        font-size: 30px;
+        display: block;
+        margin: 5px 0 40px;
+        text-align: center;
+        @media (max-width: $resM) {
+          font-size: 6vw;
+        }
+      }
+      > form {
+        > button {
+          //margin-top: 30px;
+        }
+        .form-group {
+          margin-bottom: 12px;
+        }
+      }
+      .remember{
+        color: $sub-title;
+        margin-top:15px;
+        @media (max-width: $resM) {
+          color: #ffffff;
+        }
+      }
+      .verification-code {
+        width: 60.575221238938053097345132743363%;
+        > span.error-block {
+          margin-bottom: 0;
+        }
+      }
+      .send-sms{
+        width: 35%;
+      }
+
+    }
+    .third-party{
+      position: absolute;
+      top:0;
+      right: 0;
+      width: 300px;
+      bottom: 0;
+      margin: 40px 0;
+      padding: 0 60px;
+      @media (max-width: $resM) {
+        position: relative;
+        background: transparent;
+        width: 100%;
+        border: none;
+        padding: 0 4vw;
+        margin: 4vw 0;
+        color: #ffffff;
+      }
+      .title{
+        display: block;
+        text-align: center;
+        font-size: 18px;
+        margin: 5px 0 40px;
+      }
+      > div {
+        margin-bottom: 20px;
+        > span {
+          color: $sub-title;
+          font-size: 16px;
+          padding-left: 20px;
+        }
+      }
+      > span {
+        display: block;
+        text-align: center;
+        margin-top: 36px;
+        color: $default-text;
+        > a {
+          color: $primary;
+        }
+        @media (max-width: $resM) {
+          color:#ffffff;
+        }
+      }
+    }
+  }
+}

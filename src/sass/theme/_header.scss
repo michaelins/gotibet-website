@@ -1,0 +1,201 @@
+@import "components/_sbsearch";
+@import "../common";
+
+.logo-wrapper {
+  width: 168px;
+  height: $header-height;
+  //background: rgba(0, 0, 0, 0.5);
+  padding-top: 19px;
+  padding-right: 70px;
+  @media only screen and (max-width: $resM) {
+    height: $header-height-sm;
+    padding-top: 0;
+    padding-right: 0;
+  }
+  .logo {
+    width: 98px;
+    height: 54px;
+    cursor: pointer;
+    overflow: hidden;
+    @media only screen and (max-width: $resM) {
+
+    }
+    .icon{
+      font-size: 126.75828617623282134195634599838px;
+      line-height: 100%;
+      margin-left: -14px;
+      margin-top: -38px;
+      @media only screen and (max-width: $resM) {
+        font-size: 60px;
+        line-height: 100%;
+        margin-left:5px;
+        margin-top: -5px;
+      }
+    }
+  }
+}
+
+@mixin navbar-active($text-color) {
+  border-bottom: 4px solid $primary;
+  background: none;
+  color: $text-color;
+}
+
+@mixin nav-content($text-color-default, $text-color-active, $sb-search-input-border) {
+  color: $text-color-default;
+  .navbar-brand {
+    color: $text-color-default;
+    &:hover,
+    &:focus {
+      color: $text-color-default;
+      //background-color: @navbar-default-brand-hover-bg;
+    }
+  }
+  .navbar-nav {
+    @media only screen and (max-width: $resM) {
+      margin: 0 -15px;
+    }
+    > li > a {
+      color: $text-color-default;
+      @media only screen and (min-width: $resM) {
+        height: 88px;
+        font-size: 20px;
+        padding: 34px 18px 0 18px;
+        margin-right: 33px;
+      }
+      &:hover,
+      &:focus {
+        @media only screen and (min-width: $resM) {
+          @include navbar-active($text-color-active);
+        }
+      }
+    }
+    > .active > a {
+      &,
+      &:hover,
+      &:focus {
+        @media only screen and (min-width: $resM) {
+          @include navbar-active($text-color-active);
+        }
+      }
+    }
+    > .disabled > a {
+      &,
+      &:hover,
+      &:focus {
+      }
+    }
+  }
+  @include nav-item($text-color-default);
+  @include sb-search($text-color-default, $sb-search-input-border);
+}
+
+@mixin nav-item($text-color) {
+  .nav-item {
+    height: $header-height;
+    font-size: 18px;
+    &.nav-item-user-profile {
+      margin-left: 31px;
+    }
+    &.nav-item-register {
+      padding-top: 34px;
+      margin-left: 31px;
+      line-height: 18px;
+    }
+    &.nav-item-login {
+      padding-top: 34px;
+      margin-left: 28px;
+      line-height: 18px;
+    }
+    &.nav-item-pipe {
+      padding-top: 32px;
+      margin-left: 19px;
+      > .pipe {
+        width: 2px;
+        height: 22px;
+        background: $text-color;
+      }
+    }
+    &.nav-item-search {
+      padding-top: 26px;
+      @media only screen and (min-width: $resL) {
+        width: 160px;
+      }
+      //@media only screen and (max-width: $resL) {
+      //  width: 60px;
+      //}
+    }
+  }
+}
+
+.navbar-toggle{
+  background-color: transparent;
+}
+
+.nav-pills {
+  //display: flex;
+  //justify-content: center;
+  > li {
+    @media only screen and (min-width: $resM) {
+      float: left;
+    }
+    @media only screen and (max-width: $resM) {
+      float: none;
+    }
+    > a {
+      //border-radius: @nav-pills-border-radius;
+    }
+    + li {
+      margin-left: 2px;
+    }
+
+    // Active state
+    &.active > a {
+      &,
+      &:hover,
+      &:focus {
+        //color: @nav-pills-active-link-hover-color;
+        //background-color: @nav-pills-active-link-hover-bg;
+      }
+    }
+  }
+}
+
+.transparent-navbar {
+  background-color: rgba(0, 0, 0, 0);
+  transition: background-color .5s ease 0s;
+  border: none;
+  @include nav-content($nav-transparent-text-color, $nav-transparent-text-color, none);
+  .logo-wrapper .logo .icon {
+    color: #ffffff;
+  }
+  .al-user-profile a span {
+    color: #ffffff;
+  }
+}
+
+.opaque-navbar {
+  background-color: #ffffff;
+  transition: background-color .5s ease 0s;
+  border: none;
+  -webkit-box-shadow:inset 0px -1px 0px 0px $border;
+  -moz-box-shadow:inset 0px -1px 0px 0px $border;
+  box-shadow:inset 0px -1px 0px 0px $border;
+  @include nav-content($nav-opaque-text-color,$primary, 1px solid $primary);
+  .logo-wrapper .logo .icon {
+    color: $primary;
+  }
+}
+
+.opaque-static-navbar {
+  background-color: #ffffff;
+  border: none;
+  -webkit-box-shadow:inset 0px -1px 0px 0px $border;
+  -moz-box-shadow:inset 0px -1px 0px 0px $border;
+  box-shadow:inset 0px -1px 0px 0px $border;
+  @include nav-content($nav-opaque-text-color,$primary, 1px solid $primary);
+  .logo-wrapper .logo .icon {
+    color: $primary;
+  }
+}
+

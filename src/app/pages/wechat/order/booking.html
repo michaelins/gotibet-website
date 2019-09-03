@@ -1,0 +1,44 @@
+<div class="wechat-booking">
+    <div>
+        <img src="https://temporary-1253467197.picgz.myqcloud.com/67b17051da42436c9ae9cd29f55f2225jpg" style="width: 100%" />
+    </div>
+    <div class="booking-form">
+        <form role="form" name="form" novalidate>
+            <div class="form-group">
+                <p class="form-control-static">{{activity.title}}</p>
+            </div>
+            <div class="form-group has-feedback" ng-class="{'has-error': form.contactName.$dirty && form.contactName.$invalid}">
+                <input type="text" class="form-control" id="contactName" name="contactName" placeholder="联系人姓名" ng-disabled="saving" ng-model="order.contactName" required>
+                <form-error message-text="请输入联系人姓名" ng-show="form.contactName.$error.required"></form-error>
+            </div>
+            <div class="form-group has-feedback" ng-class="{'has-error': form.contactPhone.$dirty && form.contactPhone.$invalid}">
+                <input type="text" class="form-control" id="contactPhone" name="contactPhone" placeholder="联系人电话" ng-disabled="saving" ng-model="order.contactPhone"
+                       ng-pattern="/^1(3|4|5|7|8)[0-9]\d{8}$/" required>
+                <form-error message-text="请输入联系人电话" ng-show="form.contactPhone.$error.required"></form-error>
+                <form-error message-text="请输入正确的手机号码" ng-show="form.contactPhone.$error.pattern"></form-error>
+            </div>
+            <div class="clearfix">
+                <div class="form-group item-title pull-left">
+                    <span>数量</span>
+                </div>
+                <div class="form-group item-content has-feedback pull-right" ng-class="{'has-error': form.pits.$dirty && form.pits.$invalid}">
+                    <div class="minus" ng-click="pitMinus()"></div><div class="quantity-wrapper">
+                        <input type="number" class="form-control" id="pits" name="pits" placeholder="" ng-disabled="saving" ng-model="order.pits" ng-pattern="/^[1-9]\d*$/" required>
+                    </div><div class="plus" ng-click="pitAdd()"></div>
+                    <form-error message-text="请输入数量" ng-show="form.pits.$error.required"></form-error>
+                    <form-error message-text="请输入正确的报名人数" ng-show="form.pits.$error.pattern"></form-error>
+                </div>
+            </div>
+            <div class="clearfix">
+                <div class="form-group item-title pull-left">
+                    <span>金额</span>
+                </div>
+                <div class="form-group item-content pull-right">
+                    <div class="cost-total">{{(activity.applicationCost / 100) * order.pits | currency : '￥'}}</div>
+                </div>
+            </div>
+            <button type="button" class="btn btn-wechat-lg-inline btn-block" ng-disabled="saving" ng-click="bookSubmit(form)">确定</button>
+            <form-error ng-class="{'has-error': bookingError}" message="bookingErrorMessage"></form-error>
+        </form>
+    </div>
+</div>

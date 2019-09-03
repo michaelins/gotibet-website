@@ -1,0 +1,48 @@
+<div class="enroll container">
+    <div class="enroll-content">
+        <div class="row">
+            <div class="article-block col-xs-12" ng-repeat="activity in activities.content" ng-if="activity.isOnline">
+                <div class="panel panel-default" ui-sref="activity.view({id:activity.id})">
+                    <div class="panel-body">
+                        <div class="panel-content">
+                            <div class="article-banner">
+                                <img ng-src="{{activity.coverImg}}?imageView2/1/w/1020/h/408" />
+                                <div class="article-countdown">
+                                    <span class="line-1">距离报名</span>
+                                    <span class="line-2">截止还有</span>
+                                    <span class="count">{{activity.deadline | remainDays}}<span class="days">&nbsp;天</span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title">{{activity.title}}<span ng-if="activity.isOngoing">（进行中）</span><span class="ended" ng-if="!activity.isOngoing">（已结束）</span></div>
+                <div class="clearfix summary">
+                    <div class="date pull-left">报名截止时间：<span>{{activity.deadline | date : 'yyyy.MM.dd'}}</span></div>
+                    <div class="enroll-count pull-right"><span>{{activity.applicationAmount}}</span>&nbsp;人已报名</div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="!activities.last">
+            <div class="col-xs-12">
+                <div style="padding-top: 60px;">
+                    <div ng-if="!activitiesLoading">
+                        <button class="btn btn-load-more center-block" ng-disabled="activitiesLoading" ng-click="moreActivities()">
+                            加载更多
+                        </button>
+                    </div>
+                    <div ng-if="activitiesLoading" class="center-block" style="width: 50px;height: 40px; margin-top: 0px">
+                        <div class="sk-wave">
+                            <div class="sk-rect sk-rect1"></div>
+                            <div class="sk-rect sk-rect2"></div>
+                            <div class="sk-rect sk-rect3"></div>
+                            <div class="sk-rect sk-rect4"></div>
+                            <div class="sk-rect sk-rect5"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

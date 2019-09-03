@@ -1,0 +1,34 @@
+<div class="auth">
+    <div class="login-block forget clearfix">
+        <div class="login-form forget">
+            <span class="title">找回密码</span>
+            <form role="form" name="form" novalidate>
+                <div class="form-group has-feedback" ng-class="{'has-error': form.mobile.$dirty && form.mobile.$invalid}">
+                    <input type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号" ng-disabled="saving" ng-model="user.mobile" ng-pattern="/^1(3|4|5|7|8)[0-9]\d{8}$/" required>
+                    <form-error message-text="请输入手机号" ng-show="form.mobile.$error.required"></form-error>
+                    <form-error message-text="请输入正确的手机号码" ng-show="form.mobile.$error.pattern"></form-error>
+                </div>
+                <div class="clearfix">
+                    <div class="form-group verification-code has-feedback pull-left" ng-class="{'has-error': (form.code.$dirty && form.code.$invalid) || codeError}">
+                        <input type="text" class="form-control" id="code" name="code" placeholder="手机验证码" ng-disabled="saving" ng-model="user.code" maxlength="6" required>
+                        <form-error message-text="请输入手机验证码" ng-show="form.code.$error.required && !codeError"></form-error>
+                        <form-error message="codeErrorMessage" ng-show="codeError"></form-error>
+                    </div>
+                    <div class="form-group send-sms has-feedback pull-right">
+                        <button type="button" class="btn btn-primary-md-inline btn-block" ng-disabled="codeInCoolDown || saving" ng-click="sendCode(form)">{{btnCodeMessage==null?'发送验证码':btnCodeMessage}}
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group has-feedback" ng-class="{'has-error': form.password.$dirty && form.password.$invalid}">
+                    <input type="password" class="form-control" id="password" name="password" placeholder="密码" ng-disabled="saving" ng-model="user.password" ng-maxlength="16" ng-minlength="6" maxlength="16"
+                           required>
+                    <form-error message-text="请输入密码" ng-show="form.password.$error.required"></form-error>
+                    <form-error message-text="密码最大长度为16" ng-show="form.password.$error.maxlength"></form-error>
+                    <form-error message-text="密码最小长度为6" ng-show="form.password.$error.minlength"></form-error>
+                </div>
+                <button type="button" class="btn btn-primary-lg btn-block" ng-disabled="saving" ng-click="forget(form)">立即找回</button>
+                <form-error ng-class="{'has-error': forgetError}" message="forgetErrorMessage"></form-error>
+            </form>
+        </div>
+    </div>
+</div>

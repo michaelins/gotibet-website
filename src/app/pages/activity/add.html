@@ -1,0 +1,116 @@
+<form name="form" novalidate>
+    <div class="travelogue">
+        <div class="travelogue-banner">
+            <div class="travelogue-banner-content">
+                <div class="travelogue-banner-img">
+                    <img ng-src="{{travelogue.coverImg+'?imageView2/1/w/1920/h/480'}}" ng-if="travelogue.coverImg"/>
+                    <div class="cover-img-placeholder" ng-if="!travelogue.coverImg">
+
+                    </div>
+                </div>
+                <div class="travelogue-banner-title">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+                                <div class="title-content">
+                                    <div class="form-group has-feedback" style="width: 100%"
+                                         ng-class="{'has-error': (form.$submitted && !travelogue.coverImg) || (form.title.$dirty && form.title.$invalid)}">
+                                        <label class="fake_file_input" ng-hide="saving">
+                                            <span class="btn btn-primary-sm">上传活动头图（图片最佳宽度1920px）</span>
+                                            <input type="file" name="csv" style="display: none;" nv-file-select multiple uploader="cover_uploader">
+                                        </label>
+                                        <uib-progressbar ng-if="coverImgProgress && !coverImgUploaded" class="progress-striped active" value="coverImgProgress" type="success">
+                                            活动头图上传中，请稍候...
+                                            {{coverImgProgress}}%
+                                        </uib-progressbar>
+                                        <form-error message-text="请上传活动头图" ng-show="!travelogue.coverImg"></form-error>
+                                        <input type="text" class="form-control" id="title" name="title" placeholder="活动标题" ng-disabled="saving" ng-model="travelogue.title"
+                                               required>
+                                        <form-error message-text="请输入活动标题" ng-show="form.title.$error.required"></form-error>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 col-xs-12">
+
+                    <div class="travelogue-content editor" style="margin-bottom: 40px;">
+
+                        <div class="first-add-tool">
+
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': form.deadline.$dirty && form.deadline.$invalid}">
+                                        <label for="deadline">活动截止日期</label>
+                                        <input date-range-picker class="form-control date-picker" type="text" id="deadline" name="deadline" ng-disabled="saving" required onkeydown="return false"
+                                               ng-model="travelogue.deadline" placeholder="活动截止日期" options="datepickerOptionsSingleDate"/>
+                                        <form-error message-text="请输入旅行天数" ng-show="form.deadline.$error.required"></form-error>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <div class="form-group has-feedback" ng-class="{'has-error': form.inputPrice.$dirty && form.inputPrice.$invalid}">
+                                        <label for="inputPrice">报名费用</label>
+                                        <div class="input-group" style="margin-bottom: 0px">
+                                            <span class="input-group-addon">¥</span>
+                                            <input type="text" id="inputPrice" name="inputPrice" class="form-control" ng-disabled="saving" placeholder="报名费用" required
+                                                   ng-pattern="/^([1-9]\d{0,9}|0)([.]?|(\.\d{1,2})?)$/"
+                                                   ng-model="travelogue.inputPrice">
+                                        </div>
+                                        <span class="help-block error-block basic-block" ng-show="form.inputPrice.$error.required">请输入报名费用</span>
+                                        <span class="help-block error-block basic-block" ng-show="form.inputPrice.$error.pattern">请输入正确的价格</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <node-generator content="travelogue.nodes" index="-1" show-remove-btn="false" ng-hide="saving"></node-generator>
+                        </div>
+
+                        <div class="node-wrapper">
+                            <div class="node-content" ng-repeat="node in travelogue.nodes">
+
+                                <a ng-if="node.section !== undefined" class="anchor" id="section{{$index}}"></a>
+
+                                <h2 class="editable" ng-if="node.section !== undefined" data-placeholder="输入标题内容" ui-tinymce="tinymceOptionsFilterHTML"
+                                    ng-model="node.section"></h2>
+
+                                <div ng-if="node.image !== undefined">
+                                    <p>
+                                        <img ng-if="node.image !== undefined && node.uploaded" ng-src="{{node.image}}" class="img-responsive"/>
+                                    <div ng-if="node.image !== undefined && !node.uploaded">
+                                        <uib-progressbar class="progress-striped active" value="node.progress" type="success">图片上传中，请稍候... {{node.progress}}%</uib-progressbar>
+                                    </div>
+                                    <span class="image-caption editable" data-placeholder="输入图片标题" ng-if="node.caption !== undefined" ui-tinymce="tinymceOptions"
+                                          ng-model="node.caption"></span>
+                                    </p>
+                                </div>
+
+                                <div class="editable" data-placeholder="输入文字内容" ng-if="node.text !== undefined" ui-tinymce="tinymceOptions" ng-model="node.text"></div>
+
+                                <node-generator content="travelogue.nodes" index="{{$index}}" ng-hide="saving"></node-generator>
+
+                                <div class="dragTips">点击拖动可以调整节点顺序</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn btn-load-more center-block" ng-click="save(form)" style="margin-bottom: 40px">保存活动</button>
+
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 col-xs-12 visible-lg-block visible-md-block visible-sm-block">
+                    <div class="travelogue-sidebar">
+                        <div class="travelogue-menu" data-offset-top="-88" data-offset-bottom="-1000000" bs-affix>
+                            <div>
+                                <button type="button" class="btn btn-primary-md" ng-click="save(form)" style="margin-bottom: 40px">保存活动</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

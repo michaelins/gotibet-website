@@ -1,0 +1,56 @@
+<div class="order container">
+
+    <div class="order-nav">
+        <div class="row">
+            <div class="col-xs-4 order-nav-block active">
+                <div class="order-nav-bar"></div>
+                <div class="order-nav-dot"></div>
+                <div class="order-nav-text">填写订单</div>
+            </div>
+            <div class="col-xs-4 order-nav-block active">
+                <div class="order-nav-bar"></div>
+                <div class="order-nav-dot"></div>
+                <div class="order-nav-text">在线支付</div>
+            </div>
+            <div class="col-xs-4 order-nav-block active">
+                <div class="order-nav-bar"></div>
+                <div class="order-nav-dot"></div>
+                <div class="order-nav-text">预定完成</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="order-content">
+        <div class="table-content border-top">
+            <div class="title">
+                <svg class="icon icon-negative" style="color: #7ECF3C;" aria-hidden="true">
+                    <use xlink:href="#icon-artboard21"></use>
+                </svg>
+                恭喜你，支付成功！
+            </div>
+            <table>
+                <tr class="border-top no-padding">
+                    <td style="text-align: left">
+                        <span>订单号：{{dataService.successOrder.id}}</span>
+                    </td>
+                    <td colspan="2" style="height: 40px">
+
+                    </td>
+                </tr>
+                <tr class="no-padding">
+                    <td style="text-align: left">
+                        <span>支付金额：{{dataService.successOrder.actuallyCost / 100 | currency : '￥'}}</span>
+                    </td>
+                    <td style="text-align: left">
+                        <span></span>
+                    </td>
+                    <td style="text-align: right">
+                        <button ng-disabled="saving" ui-sref="order.detail({id:dataService.successOrder.id})" class="btn btn-primary-sm">查看订单</button>
+                    </td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+</div>

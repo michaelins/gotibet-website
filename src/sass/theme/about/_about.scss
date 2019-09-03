@@ -1,0 +1,168 @@
+@import "../../common";
+
+.about-us {
+  overflow: hidden;
+  padding-top: $header-height;
+  @media (max-width: $resM) {
+    padding-top: $header-height-sm;
+  }
+  color: #000000;
+
+  .container .row {
+    margin: 0 -24px;
+    @media (min-width: $resM) {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: -ms-flexbox;
+      display: flex;
+    }
+    //> div {
+    //}
+    > [class*='col-'] {
+      padding: 0 24px;
+      @media (min-width: $resM) {
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  .about-banner {
+    position: relative;
+    height: 420px;
+    background: url('https://temporary-1253467197.picgz.myqcloud.com/f70232b7c7f34b84be0d8b4c8960e84epng') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    .title-text {
+      text-align: center;
+      font-size: 24px;
+      line-height: 100%;
+      padding: 144px 0 48px;
+      color: #ffffff;
+    }
+    .title-img {
+      img {
+        @media (max-width: $resM) {
+          width: 90vw;
+        }
+        display: block;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  .info {
+    padding: 70px 0 52px;
+    .info-block {
+      &.first {
+        background: url("https://temporary-1253467197.picgz.myqcloud.com/d22e0658b1854134aef5e1843983fc0apng") no-repeat top left;
+      }
+      &.second {
+        background: url("https://temporary-1253467197.picgz.myqcloud.com/8b7be3443cc14d768a3670d633514288png") no-repeat top left;
+      }
+      &.third {
+        background: url("https://temporary-1253467197.picgz.myqcloud.com/53544015158a432493a3a5048079d59dpng") no-repeat top left;
+      }
+      margin-bottom: 48px;
+      span {
+        display: block;
+        font-size: 24px;
+        line-height: 56px;
+        margin-bottom: 50px;
+        padding-left: 76px;
+        @media (max-width: $resM) {
+          font-size: 20px;
+        }
+      }
+      p {
+        font-size: 16px;
+        line-height: 28px;
+      }
+    }
+  }
+
+  .about-timeline {
+    color: #ffffff;
+    position: relative;
+    height: 674px;
+    background: url('https://temporary-1253467197.picgz.myqcloud.com/60af78a30b544101a55d172487042773png') no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    z-index: 0;
+    .timeline-title {
+      font-size: 24px;
+      line-height: 100%;
+      padding: 74px 0 72px;
+      text-align: center;
+    }
+    .timeline-body {
+      position: relative;
+      padding: 0 24px;
+      width: 513px;
+      @media (max-width: $resM) {
+        width: 100%;
+      }
+      margin: 0 auto;
+      .timeline-item {
+        height: 56px;
+        background: url("https://temporary-1253467197.picgz.myqcloud.com/0f05a078a8ed4975b34e6adaee00b2e6png") no-repeat top left;
+        span.date {
+          line-height: 56px;
+          font-size: 16px;
+          margin-left: 86px;
+        }
+        span.event {
+          line-height: 56px;
+          font-size: 18px;
+          margin-left: 42px;
+          @media (max-width: $resM) {
+            display: block;
+            margin-left: 86px;
+            line-height: 30px;
+          }
+        }
+      }
+      .timeline-item-separator {
+        height: 70px;
+        border-left: 2px solid #ffffff;
+        margin-left: 27px;
+      }
+    }
+  }
+
+  .team {
+    h1 {
+      font-size: 24px;
+      line-height: 100%;
+      padding: 84px 0 78px;
+      margin: 0;
+      text-align: center;
+    }
+    .info-block {
+      padding: 30px;
+      height: 100%;
+      background: #ffffff;
+      margin-bottom: 50px;
+      img {
+        display: block;
+        margin: 0 auto;
+      }
+      span {
+        display: block;
+        font-size: 24px;
+        line-height: 100%;
+        padding: 20px 0 30px;
+        text-align: center;
+      }
+      p {
+        font-size: 16px;
+        line-height: 28px;
+        color: #333333;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+@import "../common";
+
+.popover-content{
+  padding: 0;
+  .tools-content{
+    height: 54px;
+    padding: 12px 0;
+    background: #ffffff;
+    font-size: 30px;
+    line-height: 100%;
+    > div {
+      height: 100%;
+      width: 33.333333333333333333333333333%;
+      float: left;
+      text-align: center;
+      cursor: pointer;
+      border-right: 1px solid $body-bg;
+      padding: 0 12px;
+      &:last-child {
+        border-right: none;
+      }
+      &.wechat {
+        color: $wechat-color;
+      }
+      &.weibo {
+        color: $weibo-color;
+      }
+      &.qzone {
+        color: $qzone-color;
+      }
+    }
+  }
+}

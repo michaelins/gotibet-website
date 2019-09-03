@@ -1,0 +1,22 @@
+<nav ng-if="pages.length >= 2">
+    <ul class="pagination">
+        <li><a ng-click="selectPage(1)"><i class="fa fa fa-step-backward"></i> 第一页</a>
+        </li>
+        <li><a ng-click="selectPage(currentPage - 1)"><i class="fa fa fa-arrow-left"></i> 上一页</a>
+        </li>
+        <li><a>
+            <page-select></page-select>
+            / {{numPages}}
+            <select ng-model="$parent.$parent.smartTablePageSize" ng-options="item as item for item in $parent.$parent.itemsOptions" >
+                <!--<option>5</option>-->
+                <!--<option>10</option>-->
+                <!--<option>20</option>-->
+                <!--<option>50</option>-->
+                <!--<option>100</option>-->
+            </select> 条/页</a>
+        </li>
+        <li><a ng-click="selectPage(currentPage + 1)"><i class="fa fa fa-arrow-right"></i> 下一页</a>
+        </li>
+        <li><a ng-click="selectPage(numPages)"><i class="fa fa fa-step-forward"></i> 最后一页</a></li>
+    </ul>
+</nav>

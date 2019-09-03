@@ -1,0 +1,153 @@
+@import "../common";
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: $footer-height;
+  @media only screen and (max-width: $resM) {
+    height: $footer-height-sm;
+  }
+  background-color: #ffffff;
+  border: none;
+  -webkit-box-shadow:inset 0px 1px 0px 0px $border;
+  -moz-box-shadow:inset 0px 1px 0px 0px $border;
+  box-shadow:inset 0px 1px 0px 0px $border;
+}
+
+@media only screen and (min-width: $resM) {
+  .footer-content {
+    position: relative;
+    height: $footer-height;
+    .logo{
+      position: absolute;
+      width: 141px;
+      height: 77px;
+      top:70px;
+      left:0;
+      cursor: pointer;
+      overflow: hidden;
+      .icon{
+        font-size: 181.08326596604688763136620856912px;
+        line-height: 100%;
+        margin-left: -20px;
+        margin-top: -55px;
+        color: $primary;
+      }
+    }
+    .link-item {
+      > a {
+        color: #666666;
+        &:hover {
+          color: #3a3a3a;
+        }
+      }
+    }
+    .about {
+      font-size:18px;
+      line-height: 22px;
+      position: absolute;
+      top: 80px;
+      left:200px;
+    }
+    .contact {
+      font-size:18px;
+      line-height: 22px;
+      position: absolute;
+      top: 80px;
+      left:310px;
+    }
+    .company{
+      color: #999999;
+      font-size:15px;
+      line-height: 22px;
+      position: absolute;
+      top: 118px;
+      left:200px;
+      @media (min-width: $resM) and (max-width: $resL) {
+        right: 200px;
+      }
+    }
+    .qrcode {
+      position: absolute;
+      width: 120px;
+      right: 65px;
+      top: 30px;
+      bottom:28px;
+      .codeimg{
+        background: url('https://qzangcc-1253467197.picgz.myqcloud.com/qrcode.png?imageView2/1/w/120/h/120') no-repeat;
+        height: 120px;
+        margin-bottom: 9px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      }
+      .title,.text {
+        color: $sub-title;
+        font-size: 12px;
+        line-height: 22px;
+        text-align: center;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: $resM) {
+  .footer-content {
+    padding-top: 30px;
+    position: relative;
+    height: $footer-height-sm;
+    .qrcode {
+      width: 120px;
+      height: 162px;
+      margin: 0 auto;
+      .codeimg{
+        background: url('https://qzangcc-1253467197.picgz.myqcloud.com/qrcode.png?imageView2/1/w/120/h/120') no-repeat;
+        height: 120px;
+        margin-bottom: 9px;
+        box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+      }
+      .title,.text {
+        color: $sub-title;
+        font-size: 12px;
+        line-height: 22px;
+        text-align: center;
+      }
+    }
+    .logo{
+      width: 141px;
+      height: 77px;
+      margin: 30px auto;
+      .icon{
+        font-size: 181.08326596604688763136620856912px;
+        line-height: 100%;
+        margin-left: -20px;
+        margin-top: -55px;
+        color: $primary;
+      }
+    }
+    .link-item {
+      > a {
+        color: #666666;
+        width: 100%;
+        display: block;
+        text-align: center;
+        &:hover {
+          color: #3a3a3a;
+        }
+      }
+    }
+    .about,.contact {
+      font-size:18px;
+      line-height: 22px;
+      margin: 15px auto;
+      width: 100%;
+    }
+    .company{
+      color: #999999;
+      font-size:15px;
+      line-height: 22px;
+      text-align: center;
+    }
+
+  }
+}

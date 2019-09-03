@@ -1,0 +1,178 @@
+<div class="wechat-orders" ng-if="themeLayoutSettings.mobile">
+    <div class="order-detail">
+        <span>订单号：{{order.id}}</span>
+        <span>订单提交时间：{{order.createDate | date : 'yyyy-MM-dd HH:mm:ss'}}</span>
+        <span>联系人：{{order.contactName}}</span>
+        <span>联系人电话：{{order.contactPhone}}</span>
+        <div class="activity-info">
+            <div class="activity-info-content clearfix">
+                <img ng-src="{{order.activity.coverImg}}?imageView2/1/w/400/h/300" class="pull-left"/>
+                <div class="activity-title pull-left">
+                    <span>{{order.activity.title}}</span>
+                </div>
+                <div class="activity-price">
+                    <span class="quantity">x{{order.pits}}</span>
+                    <span class="currency">{{order.activity.applicationCost/100 | currency : '￥'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-summary">
+            <span class="quantity">总支付：</span>
+            <span class="currency">{{order.actuallyCost/100 | currency : '￥'}}</span>
+        </div>
+    </div>
+</div>
+<div class="order" ng-if="themeLayoutSettings.mobile">
+    <div class="order-content">
+        <div class="table-content">
+            <div class="booking-info">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="pay-channel" ng-class="{'active':payChannel === 'alipay'}" ng-click="selectPayChannel('alipay')">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_zhifubao"></use>
+                            </svg>
+
+                            <div class="pay-channel-checked">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_zhifu_s"></use>
+                                </svg>
+                            </div>
+                        </div>
+                        <button class="btn btn-order-lg btn-block" ng-disabled="saving" ng-click="paySumbit()" style="margin-top: 4vw">确认支付</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="order container" ng-if="!themeLayoutSettings.mobile">
+
+    <div class="order-nav">
+        <div class="row">
+            <div class="col-xs-4 order-nav-block active">
+                <div class="order-nav-bar"></div>
+                <div class="order-nav-dot"></div>
+                <div class="order-nav-text">填写订单</div>
+            </div>
+            <div class="col-xs-4 order-nav-block active">
+                <div class="order-nav-bar"></div>
+                <div class="order-nav-dot"></div>
+                <div class="order-nav-text">在线支付</div>
+            </div>
+            <div class="col-xs-4 order-nav-block">
+                <div class="order-nav-bar"></div>
+                <div class="order-nav-dot"></div>
+                <div class="order-nav-text">预定完成</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="order-content">
+        <div class="table-content">
+            <div class="title">订单号：{{order.id}}</div>
+            <table>
+                <tr>
+                    <th>名称</th>
+                    <th>数量</th>
+                    <th>单价</th>
+                    <th>总价</th>
+                </tr>
+                <tr>
+                    <td class="product">
+                       <span>{{order.activity.title}}</span>
+                    </td>
+                    <td>
+                        <span>{{order.pits}}</span>
+                    </td>
+                    <td><span class="currency">{{order.activity.applicationCost / 100 | currency : '￥'}}</span></td>
+                    <td><span class="currency">{{order.actuallyCost / 100 | currency : '￥'}}</span></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="order-content">
+        <div class="table-content">
+            <div class="title" style="border-bottom: 1px solid #ececec">订单信息</div>
+            <div class="booking-info">
+                <div class="row">
+                    <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+                        <form class="form-horizontal" style="margin-top: 30px">
+                            <div class="form-group ">
+                                <label class="col-sm-4 control-label">联系人</label>
+                                <div class="col-sm-8">
+                                    <div style="min-height: 40px; line-height: 40px">{{order.contactName}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">联系人电话</label>
+                                <div class="col-sm-8">
+                                    <div style="min-height: 40px; line-height: 40px">{{order.contactPhone}}</div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-sm-4 control-label">下单时间</label>
+                                <div class="col-sm-8">
+                                    <div style="min-height: 40px; line-height: 40px">{{order.createDate | date : 'yyyy-MM-dd HH:mm:ss'}}</div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="order-content">
+        <div class="table-content">
+            <div class="clearfix">
+                <div class="title pull-left">支付方式</div>
+                <div class="pay-info pull-right">
+                    <span class="currency-title">待支付</span>
+                    <!--<span class="currency-unit">¥</span>-->
+                    <span class="currency-number">{{order.actuallyCost / 100 | currency : '￥'}}</span>
+                </div>
+            </div>
+
+            <div class="booking-info">
+                <div class="row">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="pay-channel" ng-class="{'active':payChannel === 'alipay'}" ng-click="selectPayChannel('alipay')">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_zhifubao"></use>
+                            </svg>
+
+                            <div class="pay-channel-checked">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_zhifu_s"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="pay-channel" ng-class="{'active':payChannel === 'wechat'}" ng-click="selectPayChannel('wechat')">
+                            <svg class="icon" aria-hidden="true">
+                                <use xlink:href="#icon-icon_weixinzhifu"></use>
+                            </svg>
+
+                            <div class="pay-channel-checked">
+                                <svg class="icon" aria-hidden="true">
+                                    <use xlink:href="#icon-icon_zhifu_s"></use>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix pay-submit-wrapper">
+        <button class="btn btn-order-lg pull-right" ng-disabled="saving" ng-click="paySumbit()">确认支付</button>
+    </div>
+
+</div>

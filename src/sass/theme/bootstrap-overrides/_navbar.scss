@@ -1,0 +1,14 @@
+@import "../../common";
+
+.navbar-default {
+  .navbar-toggle {
+    border-color: transparent;
+    &:hover,
+    &:focus {
+      background-color: transparent;
+    }
+    .icon-bar {
+      background-color: $sub-title;
+    }
+  }
+}

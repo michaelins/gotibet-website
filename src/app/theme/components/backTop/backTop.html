@@ -1,0 +1,13 @@
+<i class="fa fa-angle-up back-top" id="backTop" title="Back to Top"></i>
+<div class="qr-code visible-lg-block visible-md-block visible-sm-block" ng-show="isQRcodeShown == 1 && !isPhotoSwipeShow" ng-class="{'animated fadeInRight':isQRcodeShown == 1,'animated fadeOutRight':isQRcodeShown == 0}">
+    <div></div>
+</div>
+<div ng-show="scroll>=768 && !isPhotoSwipeShow" class="back-top-background">
+    <div class="qr-code-btn visible-lg-block visible-md-block visible-sm-block" ng-mouseover="showQRcode(1)" ng-mouseleave="showQRcode(0)">
+        <i class="iconfont icon-icon_wx"></i>
+    </div>
+    <div class="back-top-hr"></div>
+    <div class="back-top-btn">
+        <i class="iconfont icon-icon_hdb"></i>
+    </div>
+</div>

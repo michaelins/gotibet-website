@@ -1,0 +1,212 @@
+<div class="slider">
+    <div class="container-fluid" style="padding: 0">
+        <ks-swiper-container swiper="swiper" override-parameters="{'pagination': '.swiper-pagination',
+                'paginationClickable': 'true',
+                'effect': 'fade',
+                'preloadImages': 'true',
+                'loop':'true',
+                'autoplay':'5200',
+                'nextButton': '.swiper-button-next',
+                'prevButton': '.swiper-button-prev'
+            }">
+            <!--'autoHeight': 'true',-->
+
+            <!--'cube': {-->
+            <!--'shadow': 'true',-->
+            <!--'slideShadows': 'true',-->
+            <!--'shadowOffset': 20,-->
+            <!--'shadowScale': 0.94-->
+            <!--}-->
+            <ks-swiper-slide class="swiper-slide" ng-repeat="image in slides">
+                <!--<div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.5); color:#fff">西藏早春深度游记</div>-->
+                <img ng-src="{{image.url}}" style="width: 100%; cursor: pointer" ng-click="nav(image)">
+                <!--<div class="slider-container">-->
+                <!--<div class="slider-content">-->
+                <!--&lt;!&ndash;<div style="position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.5); color:#fff">西藏早春深度游记</div>&ndash;&gt;-->
+                <!---->
+                <!--</div>-->
+                <!--</div>-->
+            </ks-swiper-slide>
+        </ks-swiper-container>
+    </div>
+</div>
+
+<div class="second-nav-wrapper">
+    <div class="second-nav" data-offset-top="-88" data-offset-bottom="-1000000" bs-affix ng-if="!isMobile">
+        <ul class="Tabs">
+            <li class="Tabs__tab Tab" ng-class="{'active':params.tab === undefined || params.tab !== 'travelogues'}"><a ui-sref=".({tab:'routines'})"><span>推选路线</span></a></li>
+            <li class="Tabs__tab Tab" ng-class="{'active':params.tab === 'travelogues'}"><a ui-sref=".({tab:'travelogues'})"><span>热门游记</span></a></li>
+            <li class="Tabs__presentation-slider" role="presentation"></li>
+        </ul>
+    </div>
+    <div class="second-nav" ng-if="isMobile">
+        <ul class="Tabs">
+            <li class="Tabs__tab Tab" ng-class="{'active':params.tab === undefined || params.tab !== 'travelogues'}"><a ui-sref=".({tab:'routines'})"><span>推选路线</span></a></li>
+            <li class="Tabs__tab Tab" ng-class="{'active':params.tab === 'travelogues'}"><a ui-sref=".({tab:'travelogues'})"><span>热门游记</span></a></li>
+            <li class="Tabs__presentation-slider" role="presentation"></li>
+        </ul>
+    </div>
+</div>
+
+<a class="anchor-home" id="homeCategoryAnchor"></a>
+
+<div class="container home-first-tab" ng-show="params.tab === undefined || params.tab !== 'travelogues'">
+
+    <div class="type-list visible-lg-block visible-md-block visible-sm-block">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="item">
+                    <button class="btn" ng-class="{'btn-primary': params.rKeyword === undefined, 'btn-default':params.rKeyword !== undefined}" ui-sref=".({rKeyword:undefined})">全部 {{routineTotal}}</button>
+                </div>
+                <div class="item" ng-repeat="keyword in routineKeywords.content">
+                    <button class="btn" ng-class="{'btn-primary':params.rKeyword == keyword.id, 'btn-default':params.rKeyword != keyword.id}" ui-sref=".({rKeyword:'{{keyword.id}}'})">{{keyword.content}} {{keyword.amount}}</button>
+                </div>
+
+                <div class="item" ng-show="!routineKeywords.last">
+                    <button class="btn btn-default" ng-click="moreKeywords('routines')">更多</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <uib-accordion class="type-list visible-xs-block">
+        <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default" is-open="status.open">
+            <uib-accordion-heading ng-if="params.rKeyword === undefined">
+                全部 <span class="badge">{{routineTotal}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <uib-accordion-heading ng-repeat="keyword in routineKeywords.content" ng-if="params.rKeyword == keyword.id">
+                {{keyword.content}} <span class="badge">{{keyword.amount}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <ul class="nav nav-pills">
+                <li role="presentation" ui-sref=".({rKeyword:undefined})" ng-click="status.open = !status.open" ng-class="{'active':params.rKeyword === undefined}"><a>全部 <span class="badge">{{routineTotal}}</span></a></li>
+                <li role="presentation" ui-sref=".({rKeyword:'{{keyword.id}}'})" ng-click="status.open = !status.open" ng-repeat="keyword in routineKeywords.content" ng-class="{'active':params.rKeyword == keyword.id}"><a>{{keyword.content}} <span class="badge">{{keyword.amount}}</span></a></li>
+                <li role="presentation" ng-show="!routineKeywords.last" ng-click="moreKeywords('routines')"><a>更多</a></li>
+            </ul>
+        </uib-accordion-group>
+    </uib-accordion>
+
+    <div class="row">
+        <div class="article-block col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-repeat="routine in routines.content">
+            <div class="hvr-float-shadow panel panel-default" ui-sref="article.view({id:routine.id})">
+                <div class="panel-body">
+                    <div class="panel-content">
+                        <div class="panel-img-wrapper">
+                            <img ng-src="{{routine.coverImg+'?imageView2/1/w/580/h/368'}}"/>
+                        </div>
+
+                        <div>
+                            <div class="title">{{routine.title}}</div>
+                            <div class="date">{{routine.createDate | date: 'yyyy.MM.dd'}}</div>
+                            <div class="author">{{routine.author.nickName}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" ng-if="!routines.last">
+        <div class="col-xs-12">
+            <div class="home-load-more">
+                <div ng-if="!routinesLoading">
+                    <button class="btn btn-load-more center-block" ng-disabled="routinesLoading" ng-click="moreRoutines()">
+                        加载更多
+                    </button>
+                </div>
+                <div ng-if="routinesLoading" class="center-block" style="width: 50px;height: 40px; margin-top: 0px">
+                    <div class="sk-wave">
+                        <div class="sk-rect sk-rect1"></div>
+                        <div class="sk-rect sk-rect2"></div>
+                        <div class="sk-rect sk-rect3"></div>
+                        <div class="sk-rect sk-rect4"></div>
+                        <div class="sk-rect sk-rect5"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<div class="container home-second-tab" ng-show="params.tab === 'travelogues'">
+
+    <div class="type-list visible-lg-block visible-md-block visible-sm-block">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="item">
+                    <button class="btn" ng-class="{'btn-primary': params.tKeyword === undefined, 'btn-default':params.tKeyword !== undefined}" ui-sref=".({tKeyword:undefined})">全部 {{travelogueTotal}}</button>
+                </div>
+                <div class="item" ng-repeat="keyword in travelogueKeywords.content">
+                    <button class="btn" ng-class="{'btn-primary':params.tKeyword == keyword.id, 'btn-default':params.tKeyword != keyword.id}" ui-sref=".({tKeyword:'{{keyword.id}}'})">{{keyword.content}} {{keyword.amount}}</button>
+                </div>
+
+                <div class="item" ng-show="!travelogueKeywords.last">
+                    <button class="btn btn-default" ng-click="moreKeywords('travelogues')">更多</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <uib-accordion class="type-list visible-xs-block">
+        <uib-accordion-group panel-class="bootstrap-panel accordion-panel panel-default" is-open="status.open">
+            <uib-accordion-heading ng-if="params.tKeyword === undefined">
+                全部 <span class="badge">{{travelogueTotal}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <uib-accordion-heading ng-repeat="keyword in travelogueKeywords.content" ng-if="params.tKeyword == keyword.id">
+                {{keyword.content}} <span class="badge">{{keyword.amount}}</span> <i class="pull-right glyphicon" ng-class="{'glyphicon-chevron-down': status.open, 'glyphicon-chevron-right': !status.open}"></i>
+            </uib-accordion-heading>
+            <ul class="nav nav-pills">
+                <li role="presentation" ui-sref=".({tKeyword:undefined})" ng-click="status.open = !status.open" ng-class="{'active':params.tKeyword === undefined}"><a>全部 <span class="badge">{{travelogueTotal}}</span></a></li>
+                <li role="presentation" ui-sref=".({tKeyword:'{{keyword.id}}'})" ng-click="status.open = !status.open" ng-repeat="keyword in travelogueKeywords.content" ng-class="{'active':params.tKeyword == keyword.id}"><a>{{keyword.content}} <span class="badge">{{keyword.amount}}</span></a></li>
+                <li role="presentation" ng-show="!travelogueKeywords.last" ng-click="moreKeywords('travelogues')"><a>更多</a></li>
+            </ul>
+        </uib-accordion-group>
+    </uib-accordion>
+
+    <div class="row">
+        <div class="article-block col-lg-6 col-md-6 col-sm-12 col-xs-12" ng-repeat="travelogue in travelogues.content">
+            <div class="hvr-float-shadow panel panel-default" ui-sref="travelogue.view({id:travelogue.id})">
+                <div class="panel-body">
+                    <div class="panel-content">
+                        <div class="article-banner">
+                            <img ng-src="{{travelogue.coverImg+'?imageView2/1/w/580/h/320'}}"/>
+                        </div>
+                        <div class="article-avatar">
+                            <img ng-src="{{travelogue.author.avatarUrl}}" class="img-responsive img-circle"/>
+                        </div>
+                        <div class="title">{{travelogue.title}}</div>
+                        <div class="date"><i class="iconfont icon-icon_sj"></i>&nbsp;{{travelogue.createDate | date: 'yyyy.MM.dd'}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;<i
+                                class="iconfont icon-icon_ydl"></i>&nbsp;{{travelogue.pageviews}}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;{{travelogue.days}}天
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row" ng-if="!travelogues.last">
+        <div class="col-xs-12">
+            <div class="home-load-more">
+                <div ng-if="!traveloguesLoading">
+                    <button class="btn btn-load-more center-block" ng-disabled="traveloguesLoading" ng-click="moreTravelogues()">
+                        加载更多
+                    </button>
+                </div>
+                <div ng-if="traveloguesLoading" class="center-block" style="width: 50px;height: 40px; margin-top: 0px">
+                    <div class="sk-wave">
+                        <div class="sk-rect sk-rect1"></div>
+                        <div class="sk-rect sk-rect2"></div>
+                        <div class="sk-rect sk-rect3"></div>
+                        <div class="sk-rect sk-rect4"></div>
+                        <div class="sk-rect sk-rect5"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

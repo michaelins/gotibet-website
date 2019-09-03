@@ -1,0 +1,43 @@
+<div class="enroll container">
+    <div class="enroll-content">
+        <div class="row">
+            <div class="article-block col-xs-12" ng-repeat="activity in news.content">
+                <div class="panel panel-default" ui-sref="article.view({id:activity.id})">
+                    <div class="panel-body">
+                        <div class="panel-content">
+                            <div class="article-banner">
+                                <img ng-src="{{activity.coverImg}}?imageView2/1/w/1020/h/408" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="title">{{activity.title}}</div>
+                <div class="clearfix summary">
+                    <div class="date pull-left"><span>{{activity.author.nickName}}</span></div>
+                    <div class="enroll-count pull-right"><span>{{activity.createDate | date : 'yyyy.MM.dd'}}</span></div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="!news.last">
+            <div class="col-xs-12">
+                <div style="padding-top: 60px;">
+                    <div ng-if="!newsLoading">
+                        <button class="btn btn-load-more center-block" ng-disabled="newsLoading" ng-click="moreNews()">
+                            加载更多
+                        </button>
+                    </div>
+                    <div ng-if="newsLoading" class="center-block" style="width: 50px;height: 40px; margin-top: 0px">
+                        <div class="sk-wave">
+                            <div class="sk-rect sk-rect1"></div>
+                            <div class="sk-rect sk-rect2"></div>
+                            <div class="sk-rect sk-rect3"></div>
+                            <div class="sk-rect sk-rect4"></div>
+                            <div class="sk-rect sk-rect5"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+@import "../../common";
+
+.wechat-order-result {
+  padding-top: $header-height;
+  @media (max-width: $resM) {
+    padding-top: $header-height-sm;
+  }
+  padding-bottom: 17.333333333333333333333333333333vw;
+  color: $default-text;
+}
+
+.wechat-order-result-img-wrapper {
+  padding: 17.333333333333333333333333333333vw 0 4vw;
+  line-height: 100%;
+  font-size: 15.2vw;
+  text-align: center;
+}
+.wechat-order-result-title {
+  font-size: 6.4vw;
+  line-height: 100%;
+  text-align: center;
+}
+.wechat-order-result-description {
+  padding-top: 4vw;
+  font-size: 4vw;
+  text-align: center;
+  color: $sub-title;
+  span {
+    color: #ff4c4c;
+  }
+}
+.wechat-order-result-button {
+  padding-top: 4vw;
+  text-align: center;
+}

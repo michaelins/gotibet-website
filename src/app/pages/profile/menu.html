@@ -1,0 +1,20 @@
+<div class="profile-menu">
+    <span ui-sref-active="active" ui-sref="profile.info">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-icon_jbzl"></use>
+        </svg>
+        基本资料
+    </span>
+    <span ui-sref-active="active" ui-sref="profile.password" ng-if="authenticationService.getClaims().mobile" >
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-icon_xgma"></use>
+        </svg>
+        修改密码
+    </span>
+    <span ui-sref-active="active" ui-sref="profile.mobile">
+        <svg class="icon" aria-hidden="true">
+            <use xlink:href="#icon-icon_bdsj"></use>
+        </svg>
+        绑定手机
+    </span>
+</div>

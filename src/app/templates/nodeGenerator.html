@@ -1,0 +1,18 @@
+<div ng-if="uploader">
+    <label class="fake_file_input">
+        <span class="btn btn-primary-sm">添加章节标题</span>
+        <input type="text" ng-click="addSection()">
+    </label>
+    <label class="fake_file_input">
+        <span class="btn btn-primary-sm">添加图片</span>
+        <input type="file" name="csv" style="display: none;" nv-file-select multiple uploader="uploader">
+    </label>
+    <label class="fake_file_input">
+        <span class="btn btn-primary-sm">添加文字</span>
+        <input type="text" ng-click="addText()">
+    </label>
+    <label class="fake_file_input" ng-if="showRemoveBtn()">
+        <span class="btn btn-danger-sm">删除</span>
+        <input type="text" ng-click="removeNode()">
+    </label>
+</div>

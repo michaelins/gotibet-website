@@ -1,0 +1,60 @@
+<div class="wechat-orders">
+    <div class="no-orders" ng-if="orders.totalElements == 0">
+        <div class="wechat-order-result-title">您目前没有订单哦</div>
+        <div class="wechat-order-result-description">现在就去看看有哪些活动可以报名吧！</div>
+        <div class="wechat-order-result-button">
+            <button class="btn btn-wechat-order-pay-inline" ui-sref="activity.all">查看去西藏活动列表</button>
+        </div>
+    </div>
+    <div class="order-detail" ng-repeat="order in orders.content">
+        <div class="order-title clearfix">
+            <span class="pull-left">
+                订单状态：
+                {{order.status == 'Created'?'等待付款':''}}
+                {{order.status == 'Paid'?'已付款':''}}
+                {{order.status == 'Refunding'?'申请退款中':''}}
+                {{order.status == 'Refunded'?'已退款':''}}
+                {{order.status == 'Expired'?'订单已失效':''}}
+                {{order.status == 'Exception'?'异常':''}}
+            </span>
+            <button ng-if="order.status == 'Created'" class="btn btn-wechat-order-pay-inline pull-right" ng-click="payOrder(order)">立即支付</button>
+            <button ng-if="order.status == 'Paid'" class="btn btn-wechat-order-refund-inline pull-right" ng-click="applyRefund(order)">申请退款</button>
+        </div>
+        <span>订单号：{{order.id}}</span>
+        <span>订单提交时间：{{order.createDate | date : 'yyyy-MM-dd HH:mm:ss'}}</span>
+        <div class="activity-info">
+            <div class="activity-info-content clearfix">
+                <img ng-src="{{order.activity.coverImg}}?imageView2/1/w/400/h/300" class="pull-left"/>
+                <div class="activity-title pull-left">
+                    <span>{{order.activity.title}}</span>
+                </div>
+                <div class="activity-price">
+                    <span class="quantity">x{{order.pits}}</span>
+                    <span class="currency">{{order.activity.applicationCost/100 | currency : '￥'}}</span>
+                </div>
+            </div>
+        </div>
+        <div class="activity-summary">
+            <span class="quantity">总支付：</span>
+            <span class="currency">{{order.actuallyCost/100 | currency : '￥'}}</span>
+        </div>
+    </div>
+
+    <div class="home-load-more" ng-if="!orders.last">
+        <div ng-if="!ordersLoading">
+            <button class="btn btn-load-more center-block" ng-disabled="ordersLoading" ng-click="moreOrders()">
+                加载更多
+            </button>
+        </div>
+        <div ng-if="ordersLoading" class="center-block" style="width: 50px;height: 40px; margin-top: 0px">
+            <div class="sk-wave">
+                <div class="sk-rect sk-rect1"></div>
+                <div class="sk-rect sk-rect2"></div>
+                <div class="sk-rect sk-rect3"></div>
+                <div class="sk-rect sk-rect4"></div>
+                <div class="sk-rect sk-rect5"></div>
+            </div>
+        </div>
+
+    </div>
+</div>

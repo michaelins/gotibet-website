@@ -1,0 +1,87 @@
+@import "../../common";
+
+.mobile {
+  .wechat-booking{
+    padding-top: $header-height;
+    @media (max-width: $resM) {
+      padding-top: $header-height-sm;
+    }
+    //min-height: 100vh;
+    background: $wechat-login-bg;
+    .booking-form {
+      padding: 7vw 8vw 17.466666666666666666666666666667vw;
+      p {
+        font-size: 4.8vw;
+        line-height: 11.466666666666666666666666666667vw;
+      }
+      .form-control{
+        height: 11.466666666666666666666666666667vw;
+        padding: 3.4666666666666666666666666666667vw 5.7333333333333333333333333333335vw;
+        border-radius: 5.7333333333333333333333333333335vw;
+        font-size: 4.2666666666666666666666666666667vw;
+        border: 1px solid $input-border;
+        background-color: $input-background;
+        box-shadow: none;
+        &:focus {
+          box-shadow: none;
+          border-color: #E99B40;
+          background: $input-background;
+        }
+      }
+      .form-group{
+        margin-bottom: 6.1333333333333333333333333333333vw;
+      }
+      .clearfix {
+        //margin-bottom: 6.6666666666666666666666666666667vw;
+      }
+      .item-title {
+        width: 36.825396825396825396825396825397%;
+        span {
+          font-size: 4.8vw;
+          line-height: 11.466666666666666666666666666667vw;
+        }
+      }
+      .item-content{
+        width: 58.41269841269841%;
+        .minus {
+          display: inline-block;
+          height: 11.466666666666666666666666666667vw;
+          width: 11.466666666666666666666666666667vw;
+          background: url('https://temporary-1253467197.picgz.myqcloud.com/55c45eb1d0f24789bdacff2ac1fa22a3png') no-repeat;
+          background-size: contain;
+          margin-right: 4vw;
+        }
+        .quantity-wrapper {
+          display: inline-block;
+          vertical-align: top;
+          width: 18.133333333333333333333333333333vw;
+          background: #EABE16;
+          border-radius: 5.6vw;
+          .form-control {
+            border: none;
+            background: none;
+            font-size: 4.8vw;
+            padding: 3.3333333333333333333333333333333vw;
+            text-align: center;
+          }
+          margin-right: 4vw;
+        }
+        .plus {
+          display: inline-block;
+          height: 11.466666666666666666666666666667vw;
+          width: 11.466666666666666666666666666667vw;
+          background: url('https://temporary-1253467197.picgz.myqcloud.com/f0b3b0ae2d574a97a8b796f9ab64e830png') no-repeat;
+          background-size: contain;
+        }
+        .cost-total {
+          height: 11.466666666666666666666666666667vw;
+          background: #EABE16;
+          border-radius: 5.6vw;
+          font-size: 5.6vw;
+          line-height: 11.466666666666666666666666666667vw;
+          text-align: center;
+        }
+      }
+    }
+  }
+}

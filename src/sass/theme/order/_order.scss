@@ -1,0 +1,242 @@
+@import "../../common";
+
+.order {
+  color: $default-text;
+  &.container {
+    padding-top: $header-height;
+    @media (max-width: $resM) {
+      padding-top: $header-height-sm;
+    }
+  }
+  .order-nav {
+    margin: 40px 0 20px;
+    @media (max-width: $resM) {
+      margin: 15px 0;
+    }
+    .row {
+      margin: 0 -12px;
+      padding: 0 30px;
+      > div {
+        padding: 0 12px;
+      }
+    }
+    .order-nav-block {
+      height: 52px;
+      color: $sub-title;
+      &.active {
+        color: $default-text;
+        .order-nav-dot, .order-nav-bar {
+          background: $fav;
+        }
+      }
+    }
+    .order-nav-content {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
+    .order-nav-bar {
+      position: absolute;
+      bottom: 7px;
+      left: 12px;
+      right: 12px;
+      height: 6px;
+      background: #e5e5e5;
+      border-radius: 3px;
+    }
+    .order-nav-dot {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #e5e5e5;
+      bottom: 0;
+      margin-left: auto;
+      margin-right: auto;
+      left: 0;
+      right: 0;
+      border-radius: 50%;
+    }
+    .order-nav-text {
+      text-align: center;
+      font-size: 18px;
+      line-height: 100%;
+    }
+  }
+  .order-summary {
+    background: #ffffff;
+    -webkit-box-shadow: inset 0 0 0 1px $activity;
+    -moz-box-shadow: inset 0 0 0 1px $activity;
+    box-shadow: inset 0 0 0 1px $activity;
+    margin: 20px 0;
+    @media (max-width: $resM) {
+      margin: 15px 0;
+    }
+  }
+  .order-content {
+    background: #ffffff;
+    margin: 20px 0;
+    @media (max-width: $resM) {
+      margin: 15px 0;
+    }
+    line-height: 100%;
+    .table-content {
+      color: $default-text;
+      padding: 30px;
+      @media (max-width: $resM) {
+        padding: 4vw;
+      }
+      &.border-top {
+        border-top: 4px solid $primary;
+      }
+      .title {
+        font-size: 18px;
+        line-height: 100%;
+        padding-bottom: 20px;
+      }
+      .minus {
+        position: absolute;
+        height: 2px;
+        width: 16px;
+        margin: 7px 0;
+        background: #7e7e7e;
+      }
+      .pipe {
+        position: absolute;
+        height: 16px;
+        width: 2px;
+        margin: 0 7px;
+        background: #7e7e7e;
+      }
+      > table {
+        width: 100%;
+        th {
+          font-size: 14px;
+          border-top: 1px solid #ececec;
+          border-bottom: 1px solid #ececec;
+          padding: 12px 0;
+          text-align: center;
+        }
+        tr {
+          &.border-top {
+            td {
+              border-top: 1px solid #ececec;
+            }
+          }
+          &.border-bottom {
+            td {
+              border-bottom: 1px solid #ececec;
+            }
+          }
+          &.no-padding {
+            td {
+              padding: 0;
+            }
+          }
+          &.padding-sm{
+            td {
+              padding: 30px;
+            }
+          }
+        }
+        td {
+          padding: 30px 30px 0 30px;
+          text-align: center;
+          &.product {
+            padding: 30px 30px 0 0;
+            text-align: left;
+          }
+          span {
+            vertical-align: top;
+            padding: 0 8px;
+            line-height: 30px;
+            &.currency {
+              color: $activity;
+              font-size: 16px;
+            }
+          }
+          input {
+            box-sizing: border-box;
+            display: inline-block;
+            width: 46px;
+            text-align: center;
+            height: 32px;
+            padding: 0;
+          }
+          button {
+            vertical-align: top;
+          }
+        }
+      }
+    }
+    .order-status {
+      padding: 30px;
+      margin-bottom: 40px;
+      background: #fafbfb;
+      span {
+        font-size: 24px;
+        line-height: 100%;
+      }
+    }
+    .order-detail-info{
+      padding-bottom: 20px;
+      span{
+        font-size: 14px;
+        color: $profile-menu-text;
+        margin-right: 60px;
+      }
+    }
+  }
+  .pay-info {
+    padding: 13px;
+    span {
+      line-height: 100%;
+      &.currency-number {
+        font-size: 34px;
+        margin-left: 5px;
+        color: $activity;
+      }
+      &.currency-unit {
+        padding-top: 10px;
+        font-size: 24px;
+        margin-left: 14px;
+        color: $activity;
+      }
+      &.currency-title {
+        padding-top: 20px;
+        font-size: 14px;
+        margin-left: 17px;
+      }
+    }
+  }
+  .pay-channel {
+    position: relative;
+    width: 100%;
+    height: 58px;
+    font-size: 116px;
+    text-align: center;
+    border: 2px solid $border;
+    cursor: pointer;
+    .icon {
+      margin-top: -30px;
+    }
+    .pay-channel-checked {
+      display: none;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      font-size: 20px;
+      .icon {
+        color: $primary;
+      }
+    }
+    &.active {
+      border: 2px solid $primary;
+      .pay-channel-checked {
+        display: block;
+      }
+    }
+  }
+  .pay-submit-wrapper {
+    padding-bottom: 20px;
+  }
+}

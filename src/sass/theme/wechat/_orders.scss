@@ -1,0 +1,78 @@
+@import "../../common";
+
+.wechat-orders {
+  padding-top: $header-height;
+  @media (max-width: $resM) {
+    padding-top: $header-height-sm;
+  }
+  background: #F2F2F2;
+  color: $profile-menu-text;
+  .no-orders {
+    padding: 18vw 0;
+  }
+  .order-detail {
+    padding: 4vw;
+    margin-bottom: 2.6666666666666666666666666666667vw;
+    background: #ffffff;
+    .order-title {
+      span {
+        font-size: 4.8vw;
+        line-height: 8vw;
+      }
+      margin-bottom: 5.3333333333333333333333333333333vw;
+    }
+    > span {
+      display: block;
+      font-size: 3.7333333333333333333333333333333vw;
+      line-height: 100%;
+      padding-bottom: 2.6666666666666666666666666666667vw;
+    }
+    .activity-info {
+      border-top: 1px solid #e2e2e2;
+      border-bottom: 1px solid #e2e2e2;
+      padding: 2.6666666666666666666666666666667vw 0;
+      .activity-info-content {
+        position: relative;
+        img {
+          width: 26.666666666666666666666666666667vw;
+          height: 20vw;
+        }
+        .activity-title {
+          color: $default-text;
+          font-size: 4vw;
+          line-height: 6.4vw;
+          width: 65.333333333333333333333333333333vw;
+          padding: 0 2.6666666666666666666666666666667vw;
+        }
+      }
+      .activity-price {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        span {
+          color: #4D5860;
+          font-size: 4vw;
+          line-height: 100%;
+          margin-left: 15.466666666666666666666666666667vw;
+          &.currency {
+            color: $activity;
+          }
+        }
+      }
+    }
+    .activity-summary{
+      padding-top: 4vw;
+      text-align: right;
+      span {
+        color: #4D5860;
+        font-size: 4vw;
+        line-height: 100%;
+        margin-left: 15.466666666666666666666666666667vw;
+        &.currency {
+          color: $activity;
+        }
+      }
+    }
+  }
+
+}

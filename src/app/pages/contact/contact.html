@@ -1,0 +1,50 @@
+<div class="contact-us container">
+    <div class="contact-us-content">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="contact-us-title">
+                    <span>联系我们</span>
+                </div>
+                <div class="contact-us-email">
+                    <p><span>求职应聘：</span>zhaopin@qzang.cc</p>
+                    <p><span>投稿邮箱：</span>tougao@qzang.cc</p>
+                    <p><span>市场合作：</span>hezuo@qzang.cc</p>
+                    <p><span>寻求报道：</span>baodao@qzang.cc</p>
+                    <p><span>联系电话：</span>028-83398135 13810006354</p>
+                    <p><span>总部办公地址：</span>成都市高新区新希望国际C座701室<a onclick="callAmap()">点击导航</a></p>
+                </div>
+                <div class="contact-us-social">
+                    <p><span>官方微博：</span><a href="http://weibo.com/qzang">趣西藏官微</a></p>
+                    <p><span>微信公众号：</span>qxz-318</p>
+                </div>
+                <div class="contact-us-map" onclick="callAmap()">
+                    <div id="container" style="height: 464px;"></div>
+                    <script type="text/javascript">
+                        var marker, map = new AMap.Map('container', {
+                            resizeEnable: true,
+                            zoom: 10,
+                            center: [104.067777, 30.545756]
+                        });
+                        map.addControl(new AMap.ToolBar());
+                        marker = new AMap.Marker({
+                            icon: "http://webapi.amap.com/theme/v1.3/markers/n/mark_b.png"
+                        });
+
+                        $(document).ready(function () {
+                            map.setZoomAndCenter(18, [104.067777, 30.545756]);
+                            marker.setPosition([104.067777, 30.545756]);
+                            marker.setMap(map);
+                        });
+
+                        var callAmap = function () {
+                            marker.markOnAMAP({
+                                position: marker.getPosition(),
+                                name:'新希望国际C座701室'//name属性在移动端有效
+                            })
+                        };
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
